@@ -1,0 +1,13 @@
+<div>
+
+    <div class="main">
+
+        <div class="header">Car Order Final Step </div>
+
+        <br>
+        <button mat-raised-button color="primary" (click)="placeOrder()">Place Order</button>
+        <br>
+        <p *ngIf="isOK">Action Completed successfully</p>
+        <p *ngIf="isNOK">Action Failed</p>
+    </div>
+</div>

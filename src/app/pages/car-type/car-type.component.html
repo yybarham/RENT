@@ -1,0 +1,27 @@
+<div>
+
+    <div class="main">
+        
+        <div class="header">Car Type List </div>
+        <div class="row">
+            <div class="col">Id</div>
+            <div class="col">Manufacturer</div>
+            <div class="col">Model</div>
+            <div class="col">DailyCost</div>
+            <div class="col">DailyPenalty</div>
+            <div class="col">Year</div>
+            <div class="col">GearType</div>
+        </div>
+        <div *ngFor="let c of carsType" class="row">
+            <div class="col">{{c.Id}}</div>
+            <div class="col">{{c.Manufacturer}}</div>
+            <div class="col">{{c.Model}}</div>
+            <div class="col">{{c.DailyCost}}</div>
+            <div class="col">{{c.DailyPenalty}}</div>            
+            <div class="col">{{c.Year}}</div>
+            <div class="col">{{c.GearType}}</div>
+        </div>
+        
+    </div>
+    
+</div>

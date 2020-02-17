@@ -1,0 +1,31 @@
+<div>
+
+    <div class="main">
+
+        <div class="header">Order List </div>
+        <div class="row">
+            <div class="col">OrderId</div>
+            <div class="col">StartDate</div>
+            <div class="col">EndDate</div>
+            <div class="col">ActualDate</div>
+            <div class="col">Id</div>
+            <div class="col">Number</div>
+        </div>
+        <div *ngFor="let o of orders" class="row">
+            <div class="col">{{o.OrderId}}</div>
+            <div class="col">{{o.StartDate | date:'dd/MM/yyyy'}}</div>
+            <div class="col">{{o.EndDate | date:'dd/MM/yyyy'}}</div>
+            <div class="col">{{o.ActualDate | date:'dd/MM/yyyy'}}</div>
+            <div class="col">{{o.Id}}</div>
+            <div class="col">{{o.Number}}</div>
+        </div>
+    </div>
+</div>
+<!--
+      : number;
+  StartDate: Date;
+  : Date;
+  : Date;
+  : number;
+  : string;
+-->

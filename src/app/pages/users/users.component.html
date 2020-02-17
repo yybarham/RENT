@@ -1,0 +1,28 @@
+
+<div>
+
+    <div class="main">
+        
+        <div class="header">User List </div>
+        <div class="row">
+            <div class="col">ID</div>
+            <div class="col">UserName</div>
+            <div class="col">FullName</div>
+            <div class="col-2">Email</div>
+            <div class="col">Gender</div>
+            <div class="col">Pass</div>
+            <div class="col">Role</div>
+        </div>
+        <div *ngFor="let u of users" class="row">
+            <div class="col">{{u.Id}}</div>
+            <div class="col">{{u.UserName}}</div>
+            <div class="col">{{u.FullName}}</div>
+            <div class="col-2">{{u.Email}}</div>
+            <div class="col">{{u.Gender}}</div>
+            <div class="col">{{u.Password}}</div>
+            <div class="col">{{u.Role}}</div>
+        </div>
+        
+    </div>
+    
+</div>

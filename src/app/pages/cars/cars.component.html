@@ -1,0 +1,38 @@
+
+
+<div>
+
+    <div class="main">
+        
+        <div class="header">Car List </div>
+        <div class="row">
+            <div class="col">Number</div>
+            <div class="col">CarType</div>
+            <div class="col">IsValid</div>
+            <div class="col">IsFree</div>
+            <div class="col">Mileage</div>
+            <div class="col">Branch</div>
+            <div class="col">choose</div>
+        </div>
+        <div *ngFor="let c of cars" class="row">
+            <div class="col">{{c.Number}}</div>
+            <div class="col">{{c.CarType}}</div>
+            <div class="col">{{c.Isvalid}}</div>
+            <div class="col">{{c.IsFree}}</div>
+            <div class="col">{{c.Mileage}}</div>            
+            <div class="col">{{c.Branch}}</div>
+            <div class="col"><input type="checkbox" (click)='choose(c.Number)' [checked]="c.selected" ></div>
+        </div>
+        <p>
+            Selected Car: <span>{{chosen}}</span>
+        </p>        
+        <br>
+        <div class="continue">
+            <button mat-raised-button color="primary" (click)="next()">Continue Order</button>
+            <p class="not-selected" *ngIf="clicked && !chosen">Not selected</p>
+        </div>
+    </div>
+    <div>
+        
+    </div>
+</div>
