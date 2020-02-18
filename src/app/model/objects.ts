@@ -36,4 +36,5 @@ export class Order {
   ActualDate: Date;
   Id: number;
   Number: string;
+  Payed: number;
 }

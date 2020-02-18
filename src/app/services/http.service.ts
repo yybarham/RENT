@@ -30,5 +30,10 @@ export class HttpService {
     const urlUsers = baseUrl + 'SaveOrder';
     return this.http.post<boolean>(urlUsers, order, { headers: { 'Content-Type': 'application/json' } }).pipe();
   }
-  
+
+  returnCar(order: Order): Observable<boolean> {
+    const urlUsers = baseUrl + 'ReturnCar';
+    return this.http.post<boolean>(urlUsers, order, { headers: { 'Content-Type': 'application/json' } }).pipe();
+  }
+
 }

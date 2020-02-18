@@ -30,6 +30,7 @@ export class CarsComponent implements OnInit {
   next() {
     this.clicked = true;
     if (this.chosen) {
+      localStorage.setItem('chosen', this.chosen);
       this.router.navigate(['new-order']);
     }
 

@@ -10,9 +10,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CarTypeComponent } from './pages/car-type/car-type.component';
 import { CarsComponent } from './pages/cars/cars.component';
-import { MatButtonModule} from '@angular/material/button';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { NewOrderComponent } from './pages/new-order/new-order.component';
+
+import { MatButtonModule} from '@angular/material/button';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule, MatFormFieldModule, MatNativeDateModule } from '@angular/material';
+import { ReturnCarComponent } from './pages/return-car/return-car.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +26,7 @@ import { NewOrderComponent } from './pages/new-order/new-order.component';
     CarsComponent,
     OrdersComponent,
     NewOrderComponent,
+    ReturnCarComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,11 @@ import { NewOrderComponent } from './pages/new-order/new-order.component';
     FormsModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

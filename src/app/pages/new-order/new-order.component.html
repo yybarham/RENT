@@ -5,9 +5,38 @@
         <div class="header">Car Order Final Step </div>
 
         <br>
+        <div>
+            Selected Car : {{ chosen }}
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Choose Start date</mat-label>
+                <input [min]="minDate1" matInput [matDatepicker]="picker" (dateChange)="onDateChange($event,1)"  >
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Choose End date</mat-label>
+                <input [min]="minDate2" matInput [matDatepicker]="picker2" (dateChange)="onDateChange($event,2)">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div>Total Days: {{days}}</div>
+        <br>        
+        
+        <br>
+        <div>
+            <span>Total Price : {{price}} $</span>
+        </div>
+        <br>
         <button mat-raised-button color="primary" (click)="placeOrder()">Place Order</button>
         <br>
-        <p *ngIf="isOK">Action Completed successfully</p>
+        <p *ngIf="isOK">Order Completed successfully</p>
         <p *ngIf="isNOK">Action Failed</p>
+        
     </div>
+    {{ order | json }}
 </div>

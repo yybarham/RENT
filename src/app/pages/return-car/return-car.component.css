@@ -1,14 +1,9 @@
 
 
-.header{
-    
-    margin: 0 auto;
-    font-size: 30px;
-    font-weight: bold;
-    padding: 20px 0;
-    text-decoration: underline;
+.input1 {    
+    border-radius: 8px;
+    line-height: 1.5rem;
 }
-
 ::ng-deep .mat-focused .mat-form-field-label {
     /*change color of label*/
     color: blue !important;

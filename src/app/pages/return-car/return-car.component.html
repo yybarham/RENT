@@ -1,0 +1,31 @@
+<div>
+
+    <div class="main">
+
+        <div>Search for a car: <input type="text" class="input1">
+
+        </div>
+        <app-orders  (valueChange)='displayCounter($event)' ></app-orders>
+        <div>
+            <mat-form-field>
+                <mat-label>Choose Return date</mat-label>
+                <input matInput [matDatepicker]="picker" (dateChange)="onDateChange($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <br>
+        <div>Car To Return {{selectedOrder?.Number}}</div>
+        <br>
+        <div> Total To Pay: 100</div>
+        <br>
+        <div>
+            <button mat-raised-button color="primary" (click)="returnCar()">Return the car </button>
+        </div>
+        <div>
+            Result :
+        </div>
+
+    </div>
+    
+</div>

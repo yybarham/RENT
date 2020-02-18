@@ -10,22 +10,17 @@
             <div class="col">ActualDate</div>
             <div class="col">Id</div>
             <div class="col">Number</div>
+            <div class="col"></div>
         </div>
-        <div *ngFor="let o of orders" class="row">
+        <div *ngFor="let o of orders | slice:0:8" class="row">
             <div class="col">{{o.OrderId}}</div>
             <div class="col">{{o.StartDate | date:'dd/MM/yyyy'}}</div>
             <div class="col">{{o.EndDate | date:'dd/MM/yyyy'}}</div>
             <div class="col">{{o.ActualDate | date:'dd/MM/yyyy'}}</div>
             <div class="col">{{o.Id}}</div>
             <div class="col">{{o.Number}}</div>
+            <div class="col"><button (click)="choose(o.OrderId)" >choose</button></div>
         </div>
     </div>
 </div>
-<!--
-      : number;
-  StartDate: Date;
-  : Date;
-  : Date;
-  : number;
-  : string;
--->
+ 

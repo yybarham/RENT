@@ -5,6 +5,7 @@ import { CarsComponent } from './pages/cars/cars.component';
 import { CarTypeComponent } from './pages/car-type/car-type.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { NewOrderComponent } from './pages/new-order/new-order.component';
+import { ReturnCarComponent } from './pages/return-car/return-car.component';
 
 
 
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'cartype', component: CarTypeComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'new-order', component:  NewOrderComponent},
+  { path: 'return-car', component:  ReturnCarComponent},
   // { path: 'login', component: LoginComponent },
   // { path: 'admin', component: AdminComponent },
   // { path: 'home', component: HomeComponent },
