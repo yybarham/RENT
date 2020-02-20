@@ -44,4 +44,14 @@ export class UsersComponent {
     this.edit = false;
   }
 
+  deleteUser(id) {
+    if (confirm('Are you sure ?')) {
+
+      this.httpService.DeleteUser(id).subscribe(res => {
+        if (res) {
+          this.getUsers();
+        }
+      });
+    }
+  }
 }
