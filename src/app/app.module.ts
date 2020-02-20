@@ -7,7 +7,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersComponent } from './pages/users/users.component';
 import { HttpService } from './services/http.service';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarTypeComponent } from './pages/car-type/car-type.component';
 import { CarsComponent } from './pages/cars/cars.component';
 import { OrdersComponent } from './pages/orders/orders.component';
@@ -17,6 +17,7 @@ import { MatButtonModule} from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule, MatFormFieldModule, MatNativeDateModule } from '@angular/material';
 import { ReturnCarComponent } from './pages/return-car/return-car.component';
+import { NewUserComponent } from './pages/new-user/new-user.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { ReturnCarComponent } from './pages/return-car/return-car.component';
     OrdersComponent,
     NewOrderComponent,
     ReturnCarComponent,
+    NewUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { ReturnCarComponent } from './pages/return-car/return-car.component';
     HttpClientModule,
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     NoopAnimationsModule,
     MatButtonModule,

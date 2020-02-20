@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Car, CarType, Order } from '../model/objects';
+import { Car, CarType, Order, User } from '../model/objects';
 import { Observable } from 'rxjs';
 import { baseUrl } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -10,6 +10,11 @@ import { HttpClient } from '@angular/common/http';
 export class HttpService {
 
   constructor(private http: HttpClient) {
+  }
+
+  getUsers(): Observable<User[]> {
+    const urlUsers = baseUrl + 'GetUsers';
+    return this.http.get<User[]>(urlUsers).pipe();
   }
 
   getCars(): Observable<Car[]> {
@@ -34,6 +39,11 @@ export class HttpService {
   returnCar(order: Order): Observable<boolean> {
     const urlUsers = baseUrl + 'ReturnCar';
     return this.http.post<boolean>(urlUsers, order, { headers: { 'Content-Type': 'application/json' } }).pipe();
+  }
+
+  saveUser(user: User): Observable<boolean> {
+    const urlUsers = baseUrl + 'SaveUser';
+    return this.http.post<boolean>(urlUsers, user, { headers: { 'Content-Type': 'application/json' } }).pipe();
   }
 
 }

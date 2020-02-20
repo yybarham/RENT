@@ -12,6 +12,8 @@
             <div class="col">Gender</div>
             <div class="col">Pass</div>
             <div class="col">Role</div>
+            <div class="col-2">actions</div>
+
         </div>
         <div *ngFor="let u of users" class="row">
             <div class="col">{{u.Id}}</div>
@@ -21,8 +23,19 @@
             <div class="col">{{u.Gender}}</div>
             <div class="col">{{u.Password}}</div>
             <div class="col">{{u.Role}}</div>
+            <div class="col-2"><button (click)="editUser(u.Id)">edit</button>&nbsp; <button>delete</button></div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div>
+            <button mat-raised-button color="primary" (click)="newUser()">New User</button>
+        </div>
+        <div>
+            <app-new-user [selectedUser]="selectedUser" (valueChange)='displayCounter()' *ngIf="edit"></app-new-user>
         </div>
         
     </div>
+
     
 </div>

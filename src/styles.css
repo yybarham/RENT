@@ -7,7 +7,7 @@ html, body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    background-image: url("./assets/images/logo1.jpg") ;    
+    background-image: url("./assets/images/logo1.jpg");
     background-repeat: no-repeat;
     background-color: #cccccc;
 }
@@ -17,12 +17,39 @@ body {
     width: 700px;
     margin: 0 auto;
 }
+
 .logo {
     background-image: url('./assets/images/logo.jpg');
     height: 70px;
     width: 100%;
     cursor: pointer;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.input1 {
+    border-radius: 8px;
+    line-height: 1.5rem;
+    border: 1px solid grey;
+    padding-left: 3px;
+}
+
+.w300 {
+    width: 300px;    
+}
+.brd1 {
+    border: 1px solid white;
+}
+.fields{
+    padding: 10px;
+}
+.names{
+    padding: 14px;
+}
