@@ -6,6 +6,8 @@ import { CarTypeComponent } from './pages/car-type/car-type.component';
 import { OrdersComponent } from './pages/orders/orders.component';
 import { NewOrderComponent } from './pages/new-order/new-order.component';
 import { ReturnCarComponent } from './pages/return-car/return-car.component';
+import { ResigterComponent } from './pages/users/resigter.component';
+import { LoginComponent } from './pages/users/login.component';
 
 
 
@@ -16,8 +18,8 @@ const routes: Routes = [
   { path: 'orders', component: OrdersComponent },
   { path: 'new-order', component:  NewOrderComponent},
   { path: 'return-car', component:  ReturnCarComponent},
-  // { path: 'login', component: LoginComponent },
-  // { path: 'admin', component: AdminComponent },
+  { path: 'register', component: ResigterComponent },
+  { path: 'login', component: LoginComponent },
   // { path: 'home', component: HomeComponent },
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
   // { path: 'rentCar', component:  CarRentFormComponent},

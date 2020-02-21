@@ -16,18 +16,19 @@
             <div class="names">Role:</div>            
         </div>
         <div  style="width: 75%;" [formGroup]="form1"  >            
-            <div class="fields"><input formControlName="id" required  type="text" class="input1 w300" ></div>
-            <div class="fields"><input formControlName="userName" required  type="text" class="input1 w300" ></div>
-            <div class="fields"><input formControlName="fullName" required  type="text" class="input1 w300" ></div>
-            <div class="fields"><input formControlName="gender" required  type="text" class="input1 w300" ></div>
-            <div class="fields"><input formControlName="email" required  type="text" class="input1 w300" ></div>
-            <div class="fields"><input formControlName="password" required  type="text" class="input1 w300" ></div>
-            <div class="fields"><input formControlName="role" required  type="text" class="input1 w300" ></div>  
+            <div class="fields"><input formControlName="Id" required  type="text" class="input1 w300" ></div>
+            <div class="fields"><input formControlName="UserName" required  type="text" class="input1 w300" ></div>
+            <div class="fields"><input formControlName="FullName" required  type="text" class="input1 w300" ></div>
+            <div class="fields"><input formControlName="Gender" required  type="text" class="input1 w300" ></div>
+            <div class="fields"><input formControlName="Email" required  type="text" class="input1 w300" ></div>
+            <div class="fields"><input formControlName="Password" required  type="text" class="input1 w300" ></div>
+            <div class="fields"><input formControlName="Role" required  type="text" class="input1 w300" ></div>  
                    
         </div>
     </div>
     <div>
         <button mat-raised-button color="primary" (click)="saveUser()">Save User</button>
+        <button mat-raised-button color="primary" (click)="register()">Send</button>
     </div>
 
 </div>

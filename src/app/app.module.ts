@@ -18,6 +18,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule, MatFormFieldModule, MatNativeDateModule } from '@angular/material';
 import { ReturnCarComponent } from './pages/return-car/return-car.component';
 import { NewUserComponent } from './pages/new-user/new-user.component';
+import { ResigterComponent } from './pages/users/resigter.component';
+import { LoginComponent } from './pages/users/login.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { NewUserComponent } from './pages/new-user/new-user.component';
     NewOrderComponent,
     ReturnCarComponent,
     NewUserComponent,
+    ResigterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
