@@ -18,24 +18,28 @@
 			<li>
 				<a href="">Employee</a>
 				<ul>
-					<li><a routerLink="/return-car">Return a car</a></li>						
+					<li><a routerLink="/return-car">Return a car</a></li>
 				</ul>
 			</li>
 			<li>
 				<a href="">User</a>
 				<ul>
-					<li><a routerLink="/cars">Search Car</a></li>					
+					<li><a routerLink="/cars">Search Car</a></li>
 				</ul>
 			</li>
 			<li>
 				<a href="">Guest</a>
 				<ul>
 					<li><a routerLink="/register">Register</a></li>
-					<li><a routerLink="/login">Login</a></li>					
+					<li><a routerLink="/login">Login</a></li>
 				</ul>
 			</li>
-
 		</ul>
+		<span *ngIf="loginGuardService.logged">[{{loginGuardService.logged}}] : 
+			<a (click)="logout()">logout</a>
+		</span>
+		<span *ngIf="!loginGuardService.logged">guest, <a routerLink="/login">login</a>
+		</span>
 	</div>
 
 </div>

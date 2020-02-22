@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from 'src/app/services/http.service';
 import { User } from 'src/app/model/objects';
-import { AuthGuardService } from 'src/app/services/auth-guard.service';
+import { LoginGuardService, AdminGuardService, EmployeeGuardService } from 'src/app/services/auth-guard.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -17,10 +17,8 @@ export class LoginComponent implements OnInit {
     Password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private httpService: HttpService,
-              private authGuardService: AuthGuardService,
-              private router: Router,
-              private route: ActivatedRoute) {
+  // tslint:disable-next-line:max-line-length
+  constructor(private httpService: HttpService, private adminGuardService: AdminGuardService, private loginGuardService: LoginGuardService, private employeeGuardService: EmployeeGuardService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -32,8 +30,20 @@ export class LoginComponent implements OnInit {
     user.Password = this.form1.get('Password').value;
     this.httpService.Login(user).subscribe(res => {
       if (res > 0) {
-        this.authGuardService.isLoggedIn = true;
-        this.router.navigate([this.route.snapshot.params.url]);
+        this.loginGuardService.loggedUser = user.UserName;
+        this.loginGuardService.isLoggedIn = true;
+        if (res === 1) {
+          this.adminGuardService.isAdmin = true;
+          this.employeeGuardService.isEmployee = true;
+        }
+        if (res === 2) {
+          this.employeeGuardService.isEmployee = true;
+        }
+        if (this.route.snapshot.params.url) {
+          this.router.navigate([this.route.snapshot.params.url]);
+        } else {
+          this.router.navigate(['/']);
+        }
       }
     });
 

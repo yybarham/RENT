@@ -8,20 +8,24 @@ import { NewOrderComponent } from './pages/new-order/new-order.component';
 import { ReturnCarComponent } from './pages/return-car/return-car.component';
 import { ResigterComponent } from './pages/users/resigter.component';
 import { LoginComponent } from './pages/users/login.component';
-import { AuthGuardService } from './services/auth-guard.service';
+import { LoginGuardService, AdminGuardService, EmployeeGuardService } from './services/auth-guard.service';
 
 
 
 const routes: Routes = [
-  { path: 'users', component: UsersComponent},
-  { path: 'cars', component: CarsComponent, canActivate: [AuthGuardService] },
-  { path: 'cartype', component: CarTypeComponent },
-  { path: 'orders', component: OrdersComponent },
-  { path: 'new-order', component:  NewOrderComponent},
-  { path: 'return-car', component:  ReturnCarComponent},
+  
+  { path: 'users', component: UsersComponent, canActivate: [AdminGuardService] },
+  { path: 'cartype', component: CarTypeComponent, canActivate: [AdminGuardService] },
+
+  { path: 'return-car', component: ReturnCarComponent, canActivate: [EmployeeGuardService] },
+
+  { path: 'cars', component: CarsComponent, canActivate: [LoginGuardService] },
+  { path: 'orders', component: OrdersComponent, canActivate: [LoginGuardService] },
+  { path: 'new-order', component: NewOrderComponent, canActivate: [LoginGuardService] },
+  
   { path: 'register', component: ResigterComponent },
   { path: 'login', component: LoginComponent },
-  
+
   // { path: 'home', component: HomeComponent },
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
   // { path: 'rentCar', component:  CarRentFormComponent},
