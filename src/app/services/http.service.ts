@@ -50,4 +50,9 @@ export class HttpService {
     const urlUsers = baseUrl + 'DeleteUser/' + id;
     return this.http.get<boolean>(urlUsers).pipe();
   }
+
+  Login(user: User): Observable<number> {
+    const urlUsers = baseUrl + 'Login';
+    return this.http.post<number>(urlUsers, user, { headers: { 'Content-Type': 'application/json' } }).pipe();
+  }
 }

@@ -8,18 +8,20 @@ import { NewOrderComponent } from './pages/new-order/new-order.component';
 import { ReturnCarComponent } from './pages/return-car/return-car.component';
 import { ResigterComponent } from './pages/users/resigter.component';
 import { LoginComponent } from './pages/users/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 
 
 const routes: Routes = [
   { path: 'users', component: UsersComponent},
-  { path: 'cars', component: CarsComponent},
+  { path: 'cars', component: CarsComponent, canActivate: [AuthGuardService] },
   { path: 'cartype', component: CarTypeComponent },
   { path: 'orders', component: OrdersComponent },
   { path: 'new-order', component:  NewOrderComponent},
   { path: 'return-car', component:  ReturnCarComponent},
   { path: 'register', component: ResigterComponent },
   { path: 'login', component: LoginComponent },
+  
   // { path: 'home', component: HomeComponent },
   // { path: '', redirectTo: '/home', pathMatch: 'full' },
   // { path: 'rentCar', component:  CarRentFormComponent},

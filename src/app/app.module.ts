@@ -20,6 +20,7 @@ import { ReturnCarComponent } from './pages/return-car/return-car.component';
 import { NewUserComponent } from './pages/new-user/new-user.component';
 import { ResigterComponent } from './pages/users/resigter.component';
 import { LoginComponent } from './pages/users/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { LoginComponent } from './pages/users/login.component';
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [HttpService],
+  providers: [HttpService, AuthGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
