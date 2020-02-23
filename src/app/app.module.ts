@@ -21,6 +21,7 @@ import { NewUserComponent } from './pages/new-user/new-user.component';
 import { ResigterComponent } from './pages/users/resigter.component';
 import { LoginComponent } from './pages/users/login.component';
 import { LoginGuardService } from './services/auth-guard.service';
+import { NewCarComponent } from './pages/cars/new-car.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { LoginGuardService } from './services/auth-guard.service';
     NewUserComponent,
     ResigterComponent,
     LoginComponent,
+    NewCarComponent,
   ],
   imports: [
     BrowserModule,

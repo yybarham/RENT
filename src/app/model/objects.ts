@@ -21,6 +21,7 @@ export class Car {
   Mileage: number;
   Branch: number;
   Image: any;
+  IsNew: boolean;
   selected = false; // local use
 }
 export class CarType {

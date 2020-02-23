@@ -1,10 +1,10 @@
 
 .main-menu{
   padding-top: 40px;
-  width: 500px;
+  width: 480px;
   direction: ltr;
   margin: 0 auto;
-  text-align: right;
+  text-align: left
 }
 
 body {

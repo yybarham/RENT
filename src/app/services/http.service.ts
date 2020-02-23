@@ -54,5 +54,14 @@ export class HttpService {
   Login(user: User): Observable<number> {
     const urlUsers = baseUrl + 'Login';
     return this.http.post<number>(urlUsers, user, { headers: { 'Content-Type': 'application/json' } }).pipe();
+  } 
+   saveCar(user: Car): Observable<boolean> {
+    const urlUsers = baseUrl + 'SaveCar';
+    return this.http.post<boolean>(urlUsers, user, { headers: { 'Content-Type': 'application/json' } }).pipe();
+  }
+
+  DeleteCar(id): Observable<boolean> {
+    const urlUsers = baseUrl + 'DeleteCarr/' + id;
+    return this.http.get<boolean>(urlUsers).pipe();
   }
 }
