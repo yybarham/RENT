@@ -13,8 +13,13 @@
     flex-flow: row;
     line-height: 2rem;
     border-bottom: 1px solid grey;
+    cursor: pointer;
 }
 
+.col-5 {
+    width: 50px;
+    text-align: left;
+}
 .col {
     width: 100px;
     text-align: left;
@@ -23,10 +28,30 @@
     width: 200px;
     text-align: left;
 }
-
+.col-12 {
+    width: 120px;
+    text-align: left;
+}
 .continue{
     padding-top: 30px;
 }
 .not-selected{
     color: red;
+}
+
+.row-selected{
+    background-color: burlywood;
+}
+input {
+    width: 80px;
+    height: 20px;
+    border-radius: 5px;
+}
+
+.opt {
+    height: 26px;    
+    margin-left: 10px;
+    border: none;
+    font-size: 14px;
+    width: 80px;
 }

@@ -12,10 +12,23 @@ export class CarsComponent implements OnInit {
 
   cars: Car[] = [];
   carTypes: CarType[] = [];
-
+  joinData: any[] = [];
   chosen = '';
   img = '';
   clicked = false;
+  // search
+  all = '';
+  manufacturer = '';
+  year = '';
+  gear = -1;
+
+
+  comboGear = [
+    { key: -1, value: 'CHOOSE' },
+    { key: 1, value: 'AUTO' },
+    { key: 2, value: 'MANU' },
+  ];
+
   constructor(private httpService: HttpService, private router: Router) { }
 
   ngOnInit() {
@@ -23,14 +36,9 @@ export class CarsComponent implements OnInit {
       this.cars = res;
       this.httpService.getCarType().subscribe(res2 => {
         this.carTypes = res2;
-        const joinData = this.innerJoin(this.carTypes, this.cars,
-          ({ Id, Manufacturer }, { Number, CarType, Mileage }) =>
-            CarType === Id && { Number, CarType, Mileage, Id, Manufacturer });
-
-        //Number,  CarType,  Isvalid,  IsFree,  Mileage,  Branch,  Image,  IsNew,  selected
-        //------------------  
-        //Id,  Manufacturer,  Model,  DailyCost,  DailyPenalty,  Year,  GearType
-          console.table(joinData);
+        this.joinData = this.innerJoin(this.carTypes, this.cars,
+          ({ Id, Manufacturer, Model, Year, GearType }, { Number, CarType, Mileage, Branch, Image, selected }) =>
+            CarType === Id && { Number, CarType, Model, Mileage, Id, Manufacturer, GearType, Year, Branch, Image, selected });
       });
     });
   }
@@ -38,8 +46,8 @@ export class CarsComponent implements OnInit {
   choose(carid) {
     this.chosen = carid;
     this.img = this.cars.filter(c => c.Number === carid)[0].Image;
-    this.cars.forEach(c => c.selected = false);
-    this.cars.filter(c => c.Number === carid)[0].selected = true;
+    this.joinData.forEach(c => c.selected = false);
+    this.joinData.filter(c => c.Number === carid)[0].selected = true;
   }
 
   next() {
