@@ -14,6 +14,9 @@ export class User {
   IsNew: boolean;
 }
 export class Car {
+  public constructor(init?: Partial<Car>) {
+    Object.assign(this, init);
+}
   Number: string;
   CarType: number;
   Isvalid: boolean;

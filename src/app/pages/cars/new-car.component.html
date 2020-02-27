@@ -1,14 +1,46 @@
-<div>
+<div class="page">
 
-    <div class="main">
-
-        <div class="header">Car List </div>
-
-
-        <div>
-            <input type="file" (change)="handleFileSelect($event)">
-        </div>
-        <button (click)="saveCar()">Save Car</button>
+    <div class="header">
+        <h3 class="title"> New/ Edit Car </h3>
     </div>
-    
+    <!--
+    car.IsNew = true;
+    car.Number = '555555';
+    car.Branch = 1;
+    car.CarType = 1;
+    car.IsFree = true;
+    car.Isvalid = true;
+    car.Mileage = 90;
+    car.Image = this.base64textString;
+-->
+    <div class="page-body brd1" style="display: flex;flex-flow: row;">
+
+        <div style="width: 20%;">
+            <div class="names">Number:</div>
+            <div class="names">Branch:</div>
+            <div class="names">CarType:</div>
+            <div class="names">IsFree:</div>
+            <div class="names">Isvalid:</div>
+            <div class="names">Mileage:</div>
+            <div class="names">choose File:</div>
+        </div>
+        <div style="width: 75%;" [formGroup]="form1" >
+            <div class="fields"><input formControlName="Number" required type="text" class="input1 w300" [ngClass]="{'red': inValid('Number')  }"></div>
+            <div class="fields"><input formControlName="Branch" required type="text" class="input1 w300" [ngClass]="{'red': inValid('Branch')  }"></div>
+            <div class="fields"><input formControlName="CarType" required type="text" class="input1 w300" [ngClass]="{'red': inValid('CarType')  }"></div>
+            <div class="fields"><input formControlName="IsFree" required type="text" class="input1 w300" [ngClass]="{'red': inValid('IsFree')  }"></div>
+            <div class="fields"><input formControlName="Isvalid" required type="text" class="input1 w300" [ngClass]="{'red': inValid('Isvalid')  }"></div>
+            <div class="fields"><input formControlName="Mileage" required type="text" class="input1 w300" [ngClass]="{'red': inValid('Mileage')  }"></div>
+            <div class="fields"><input (change)="handleFileSelect($event)"   type="file" class="input1 w300">
+            
+            </div>
+             
+        </div>
+    </div>
+    <div>
+        <button mat-raised-button color="primary" style="background-color: cyan;" (click)="saveCar()">Save User</button>
+    </div>
+    <br />
+    <div>[ {{form1.value | json}} ]</div>
+    <br />
 </div>

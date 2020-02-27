@@ -53,3 +53,5 @@ body {
 .names{
     padding: 14px;
 }
+
+.red { border:1px solid red  ;}
