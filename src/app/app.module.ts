@@ -11,13 +11,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarTypeComponent } from './pages/car-type/car-type.component';
 import { CarsComponent } from './pages/cars/cars.component';
 import { OrdersComponent } from './pages/orders/orders.component';
-import { NewOrderComponent } from './pages/new-order/new-order.component';
-
+import { NewOrderComponent } from './pages/orders/new-order.component';
 import { MatButtonModule} from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule, MatFormFieldModule, MatNativeDateModule } from '@angular/material';
 import { ReturnCarComponent } from './pages/return-car/return-car.component';
-import { NewUserComponent } from './pages/new-user/new-user.component';
+import { NewUserComponent } from './pages/users/new-user.component';
 import { ResigterComponent } from './pages/users/resigter.component';
 import { LoginComponent } from './pages/users/login.component';
 import { LoginGuardService } from './services/auth-guard.service';

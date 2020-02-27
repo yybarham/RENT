@@ -4,7 +4,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { CarsComponent } from './pages/cars/cars.component';
 import { CarTypeComponent } from './pages/car-type/car-type.component';
 import { OrdersComponent } from './pages/orders/orders.component';
-import { NewOrderComponent } from './pages/new-order/new-order.component';
+import { NewOrderComponent } from './pages/orders/new-order.component';
 import { ReturnCarComponent } from './pages/return-car/return-car.component';
 import { ResigterComponent } from './pages/users/resigter.component';
 import { LoginComponent } from './pages/users/login.component';
