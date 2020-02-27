@@ -60,8 +60,8 @@ export class HttpService {
     return this.http.post<boolean>(urlUsers, user, { headers: { 'Content-Type': 'application/json' } }).pipe();
   }
 
-  DeleteCar(id): Observable<boolean> {
-    const urlUsers = baseUrl + 'DeleteCarr/' + id;
+  DeleteCar(number): Observable<boolean> {
+    const urlUsers = baseUrl + 'DeleteCar/' + number;
     return this.http.get<boolean>(urlUsers).pipe();
   }
 }

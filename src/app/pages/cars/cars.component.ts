@@ -21,6 +21,8 @@ export class CarsComponent implements OnInit {
   manufacturer = '';
   year = '';
   gear = -1;
+  edit = false;
+  selectedCar:Car;
 
 
   comboGear = [
@@ -32,6 +34,10 @@ export class CarsComponent implements OnInit {
   constructor(private httpService: HttpService, private router: Router) { }
 
   ngOnInit() {
+    this.getCars();
+
+  }
+  getCars() {
     this.httpService.getCars().subscribe(res => {
       this.cars = res;
       this.httpService.getCarType().subscribe(res2 => {
@@ -41,13 +47,15 @@ export class CarsComponent implements OnInit {
             CarType === Id && { Number, CarType, Model, Mileage, Id, Manufacturer, GearType, Year, Branch, Image, selected });
       });
     });
+
   }
 
-  choose(carid) {
-    this.chosen = carid;
-    this.img = this.cars.filter(c => c.Number === carid)[0].Image;
+  choose(number) {
+    this.edit = false;
+    this.chosen = number;
+    this.img = this.cars.filter(c => c.Number === number)[0].Image;
     this.joinData.forEach(c => c.selected = false);
-    this.joinData.filter(c => c.Number === carid)[0].selected = true;
+    this.joinData.filter(c => c.Number === number)[0].selected = true;
   }
 
   next() {
@@ -55,6 +63,38 @@ export class CarsComponent implements OnInit {
     if (this.chosen) {
       localStorage.setItem('chosen', this.chosen);
       this.router.navigate(['new-order']);
+    }
+  }
+ 
+  newCar() {
+    this.selectedCar = new Car();
+    this.selectedCar.Number = '000000000';
+    this.selectedCar.IsNew = true;
+    this.edit = true;
+  }
+  
+  displayCounter() {
+    this.getCars();
+    this.edit = false;
+  }
+
+  editCar(number) {
+    this.selectedCar = this.cars.filter(u => u.Number === number)[0];
+    this.selectedCar.IsNew = false;
+    this.edit = true;
+    this.joinData.forEach(c => c.selected = false);
+    this.joinData.filter(c => c.Number === number)[0].selected = true;
+    this.img = this.cars.filter(c => c.Number === number)[0].Image;
+  }
+
+  deleteCar(number) {
+    if (confirm('Are you sure ?')) {
+
+      this.httpService.DeleteCar(number).subscribe(res => {
+        if (res) {
+          this.getCars();
+        }
+      });
     }
   }
 

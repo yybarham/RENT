@@ -43,8 +43,6 @@ export class NewUserComponent implements OnInit, OnChanges {
     } else {
       this.initForm();
     }
-    //  id: new FormControl(this.selectedUser.Id, [Validators.required, Validators.pattern('^[0-9]*$')]),
-    //   userName: new FormControl(this.selectedUser.UserName, [Validators.required, Validators.pattern('^[A-Za-z]*$')]),
   }
 
   ngOnInit() {

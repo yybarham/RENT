@@ -2,22 +2,30 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from 'src/app/services/http.service';
 import { Car } from 'src/app/model/objects';
+import { Input } from '@angular/core';
+import { Output } from '@angular/core';
+import { EventEmitter } from 'events';
+import { OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-new-car',
   templateUrl: './new-car.component.html',
   styleUrls: ['./new-car.component.css']
 })
-export class NewCarComponent implements OnInit {
+export class NewCarComponent implements OnInit, OnChanges {
+
+  @Input() selectedCar: Car = new Car();
   form1;
   base64textString = '';
-  selectedCar: Car;
+  
 
 
   constructor(private httpService: HttpService) {
     this.initForm();
   }
+  ngOnInit() {
 
+  }
   initForm() {
     this.form1 = new FormGroup({
       Number: new FormControl('', [Validators.required]),
@@ -29,7 +37,17 @@ export class NewCarComponent implements OnInit {
       Image: new FormControl(''),
     });
   }
-  ngOnInit() {
+  ngOnChanges() {
+
+    if (this.selectedCar.Number) {
+      Object.keys(this.selectedCar).forEach(key => {
+        if (this.form1.controls[key]) {
+          this.form1.controls[key].setValue(this.selectedCar[key]);
+        }
+      });
+    } else {
+      this.initForm();
+    }
   }
 
   handleFileSelect(evt) {
@@ -50,8 +68,11 @@ export class NewCarComponent implements OnInit {
   }
 
   saveCar() {
+
+
+    const isNew = this.selectedCar.IsNew;
     this.selectedCar = new Car(this.form1.value);
-    this.selectedCar.IsNew = true;
+    this.selectedCar.IsNew = isNew;
     if (this.form1.invalid) {
       Object.keys(this.form1.controls).forEach(key => {
         this.form1.get(key).markAsTouched();

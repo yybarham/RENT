@@ -55,3 +55,10 @@ input {
     font-size: 14px;
     width: 80px;
 }
+.pic-abs{
+     position: absolute;
+     top: 340px;
+     left: 1450px; 
+     border:2px solid white;
+ 
+}
