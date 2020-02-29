@@ -1,7 +1,7 @@
 
 .main-menu{
   padding-top: 40px;
-  width: 480px;
+  width: 560px;
   direction: ltr;
   margin: 0 auto;
   text-align: left
@@ -25,7 +25,7 @@ li {
   position: relative;
   padding: 5px 20px;
   line-height: 1.3;
-  width: 80px;
+  width: 100px;
 }
 ul li:hover {
   background-color:#ddd;
@@ -38,11 +38,15 @@ ul ul {
   padding-left: 0;
 }
 ul ul li {
-  width: 80px;;
+  width: 100px;;
 }
 ul ul li:hover {
   background-color:#ddd;
 }
 li:hover ul {			
   display: block;
+}
+
+#logout, #login {
+  text-decoration: underline;
 }

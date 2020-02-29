@@ -22,6 +22,8 @@
         <div>
             <button mat-raised-button color="primary" (click)="login()">Login</button>
         </div>
+        <div *ngIf="result==1" >Login successfuly</div>
+        <div *ngIf="result==0" style="color: red;" >Invalid user or password</div>
     </div>
 
 </div>

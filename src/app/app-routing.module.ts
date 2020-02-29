@@ -10,11 +10,12 @@ import { ResigterComponent } from './pages/users/resigter.component';
 import { LoginComponent } from './pages/users/login.component';
 import { LoginGuardService, AdminGuardService, EmployeeGuardService } from './services/auth-guard.service';
 import { NewCarComponent } from './pages/cars/new-car.component';
+import { InfoComponent } from './info/info.component';
 
 
 
 const routes: Routes = [
-  
+  { path: '', component: InfoComponent },
   { path: 'users', component: UsersComponent, canActivate: [AdminGuardService] },
   { path: 'cartype', component: CarTypeComponent, canActivate: [AdminGuardService] },
   { path: 'new-car', component: NewCarComponent },

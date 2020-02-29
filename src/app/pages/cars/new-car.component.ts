@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from 'src/app/services/http.service';
 import { Car } from 'src/app/model/objects';
 import { Input } from '@angular/core';
 import { Output } from '@angular/core';
-import { EventEmitter } from 'events';
 import { OnChanges } from '@angular/core';
 
 @Component({
@@ -13,7 +12,7 @@ import { OnChanges } from '@angular/core';
   styleUrls: ['./new-car.component.css']
 })
 export class NewCarComponent implements OnInit, OnChanges {
-
+  @Output() eventToParent = new EventEmitter();
   @Input() selectedCar: Car = new Car();
   form1;
   base64textString = '';
@@ -83,6 +82,7 @@ export class NewCarComponent implements OnInit, OnChanges {
     if (confirm("confirm")) {
       this.httpService.saveCar(this.selectedCar).subscribe(res => {
         alert(res);
+        this.eventToParent.emit();
       });
     }
   }

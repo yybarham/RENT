@@ -22,7 +22,8 @@ export class CarsComponent implements OnInit {
   year = '';
   gear = -1;
   edit = false;
-  selectedCar:Car;
+  selectedCar: Car;
+  history: string[] = [];
 
 
   comboGear = [
@@ -31,7 +32,15 @@ export class CarsComponent implements OnInit {
     { key: 2, value: 'MANU' },
   ];
 
-  constructor(private httpService: HttpService, private router: Router) { }
+  constructor(private httpService: HttpService, private router: Router) {
+
+
+    const his = localStorage.getItem('history');
+    if (his) {
+      this.history = JSON.parse(his);
+    }
+
+  }
 
   ngOnInit() {
     this.getCars();
@@ -50,7 +59,16 @@ export class CarsComponent implements OnInit {
 
   }
 
-  choose(number) {
+  choose(number, fromHistory = false) {
+
+    if (!fromHistory) {
+      if (this.history.indexOf(number) < 0) {
+        this.history.unshift(number);
+        this.history.splice(5);
+        localStorage.setItem('history', JSON.stringify(this.history));
+      }
+    }
+
     this.edit = false;
     this.chosen = number;
     this.img = this.cars.filter(c => c.Number === number)[0].Image;
@@ -65,15 +83,15 @@ export class CarsComponent implements OnInit {
       this.router.navigate(['new-order']);
     }
   }
- 
+
   newCar() {
     this.selectedCar = new Car();
     this.selectedCar.Number = '000000000';
     this.selectedCar.IsNew = true;
     this.edit = true;
   }
-  
-  displayCounter() {
+
+  event1() {
     this.getCars();
     this.edit = false;
   }
@@ -99,5 +117,7 @@ export class CarsComponent implements OnInit {
   }
 
   public innerJoin = (xs, ys, sel) => xs.reduce((zs, x) => ys.reduce((zs, y) => zs.concat(sel(x, y) || []), zs), []);
+
+
 
 }

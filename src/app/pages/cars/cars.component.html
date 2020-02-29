@@ -4,17 +4,20 @@
 
         <div class="header">Car List </div>
         <div class="row">
-            <div><input type="text"   [(ngModel)]="all" placeholder="Free text search all columns" style="width: 500px;"> </div>
+            <div><input type="text" [(ngModel)]="all" placeholder="Free text search all columns" style="width: 500px;">
+            </div>
         </div>
         <div class="row">
             <div class="col"> </div>
-            <div class="col"   ><input type="text"></div>
+            <div class="col"><input type="text"></div>
             <div class="col-12"><input [(ngModel)]="manufacturer" type="text"></div>
-            <div class="col"   ><input type="text"></div>
-            <div class="col-12"   > <select class="opt" [(ngModel)]="gear"><option *ngFor='let c of comboGear' value="{{c.key}}">{{c.value}}</option></select></div>
-            <div class="col"   ><input [(ngModel)]="year"         type="text"></div>
-            <div class="col"   ><input type="text"></div>
-            <div class="col"   ><input type="text"></div>
+            <div class="col"><input type="text"></div>
+            <div class="col-12"> <select class="opt" [(ngModel)]="gear">
+                    <option *ngFor='let c of comboGear' value="{{c.key}}">{{c.value}}</option>
+                </select></div>
+            <div class="col"><input [(ngModel)]="year" type="text"></div>
+            <div class="col"><input type="text"></div>
+            <div class="col"><input type="text"></div>
             <div class="col"> </div>
         </div>
         <div class="row">
@@ -25,20 +28,25 @@
             <div class="col-12">GearType</div>
             <div class="col">Year</div>
             <div class="col">Mileage</div>
-            <div class="col">Branch</div>   
-            <div class="col"> </div>          
+            <div class="col">Branch</div>
+            <div class="col"> </div>
         </div>
-        <div *ngFor="let c of joinData | filterAll : all | filterCol : manufacturer :'Manufacturer' | filterCol : year :'Year' | ComboTxt : gear : 'GearType' " class="row"  [ngClass]="{ 'row-selected' : c.selected  }">
-            <div class="col"><button (click)='choose(c.Number)' >choose</button> </div>
+        <div *ngFor="let c of joinData | filterAll : all | filterCol : manufacturer :'Manufacturer' | filterCol : year :'Year' | ComboTxt : gear : 'GearType' "
+            class="row" [ngClass]="{ 'row-selected' : c.selected  }">
+            <div class="col"><button (click)='choose(c.Number)'>choose</button> </div>
             <div class="col">{{c.Number}}</div>
             <div class="col-12">{{c.Manufacturer}}</div>
             <div class="col">{{c.Model}}</div>
             <div class="col">{{c.GearType | GType }}</div>
             <div class="col">{{c.Year}}</div>
             <div class="col">{{c.Mileage}}</div>
-            <div class="col">{{c.Branch | BrType}}</div>  
-            <div class="col"><button (click)="editCar(c.Number)">edit</button><button (click)="deleteCar(c.Number)">del</button></div>          
+            <div class="col">{{c.Branch | BrType}}</div>
+            <div class="col"><button (click)="editCar(c.Number)">edit</button><button
+                    (click)="deleteCar(c.Number)">del</button></div>
 
+        </div>
+        <div>
+            <button mat-raised-button color="primary" (click)="newCar()">New User</button>
         </div>
         <p>
             Selected Car: <span>{{chosen}}</span>
@@ -48,14 +56,19 @@
             <button mat-raised-button color="primary" (click)="next()">Continue Order</button>
             <p class="not-selected" *ngIf="clicked && !chosen">Not selected</p>
         </div>
-        <div class="col-xs-4 pic-abs" >
+        <div class="col-xs-4 pic-abs">
             <img *ngIf="img" height="150" width="220" src="data:image/png;base64,{{img}}">
         </div>
         <div>
-            <app-new-car [selectedCar]="selectedCar"  *ngIf="edit" ></app-new-car>
+            <app-new-car [selectedCar]="selectedCar" (eventToParent)='event1()' *ngIf="edit"></app-new-car>
         </div>
     </div>
     <div>
 
+    </div>
+</div>
+<div class="history">
+    <div class="rowh" *ngFor="let h of history " (click)="choose(h,true)">
+        {{ h }}
     </div>
 </div>

@@ -8,8 +8,7 @@ import { User } from '../model/objects';
 })
 export class LoginGuardService implements CanActivate {
 
-  // isLoggedIn = false;
-  isLoggedIn = true; // DELETE 
+  isLoggedIn = false;
   loggedUser: string;
   constructor(private router: Router) {
   }
@@ -33,8 +32,7 @@ export class LoginGuardService implements CanActivate {
   providedIn: 'root'
 })
 export class AdminGuardService implements CanActivate {
-  // isAdmin = false;
-  isAdmin = true; // DELETE 
+  isAdmin = false;
 
   constructor(private router: Router) {
   }
@@ -53,8 +51,7 @@ export class AdminGuardService implements CanActivate {
   providedIn: 'root'
 })
 export class EmployeeGuardService implements CanActivate {
-  // isEmployee = false;
-  isEmployee = true; // DELETE 
+  isEmployee = false;
   constructor(private router: Router) {
   }
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {

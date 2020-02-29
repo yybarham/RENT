@@ -12,6 +12,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
+  result: number = -1;
   public form1 = new FormGroup({
     UserName: new FormControl('', [Validators.required]),
     Password: new FormControl('', [Validators.required]),
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
     user.UserName = this.form1.get('UserName').value;
     user.Password = this.form1.get('Password').value;
     this.httpService.Login(user).subscribe(res => {
+      this.result = res;
       if (res > 0) {
         this.loginGuardService.loggedUser = user.UserName;
         this.loginGuardService.isLoggedIn = true;
@@ -40,8 +42,11 @@ export class LoginComponent implements OnInit {
           this.employeeGuardService.isEmployee = true;
         }
         if (this.route.snapshot.params.url) {
-          this.router.navigate([this.route.snapshot.params.url]);
+          setTimeout(() => {
+            this.router.navigate([this.route.snapshot.params.url]);
+          }, 1300)
         } else {
+
           this.router.navigate(['/']);
         }
       }

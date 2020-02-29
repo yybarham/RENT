@@ -22,6 +22,7 @@ import { LoginComponent } from './pages/users/login.component';
 import { LoginGuardService } from './services/auth-guard.service';
 import { NewCarComponent } from './pages/cars/new-car.component';
 import { Pipes, CarType, BrType, GType, FilterCol, ComboTxt, FilterAll } from './utils/pipes';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { Pipes, CarType, BrType, GType, FilterCol, ComboTxt, FilterAll } from '.
     ResigterComponent,
     LoginComponent,
     NewCarComponent,
-    Pipes, CarType, BrType, GType, FilterCol, ComboTxt, FilterAll
+    Pipes, CarType, BrType, GType, FilterCol, ComboTxt, FilterAll, InfoComponent
   ],
   imports: [
     BrowserModule,

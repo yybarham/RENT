@@ -1,5 +1,4 @@
-
-.header{
+.header {
     width: 200px;
     margin: 0 auto;
     font-size: 30px;
@@ -20,28 +19,34 @@
     width: 50px;
     text-align: left;
 }
+
 .col {
     width: 100px;
     text-align: left;
 }
+
 .col-2 {
     width: 200px;
     text-align: left;
 }
+
 .col-12 {
     width: 120px;
     text-align: left;
 }
-.continue{
+
+.continue {
     padding-top: 30px;
 }
-.not-selected{
+
+.not-selected {
     color: red;
 }
 
-.row-selected{
+.row-selected {
     background-color: burlywood;
 }
+
 input {
     width: 80px;
     height: 20px;
@@ -49,16 +54,33 @@ input {
 }
 
 .opt {
-    height: 26px;    
+    height: 26px;
     margin-left: 10px;
     border: none;
     font-size: 14px;
     width: 80px;
 }
-.pic-abs{
-     position: absolute;
-     top: 340px;
-     left: 1450px; 
-     border:2px solid white;
- 
+
+.pic-abs {
+    position: absolute;
+    top: 340px;
+    left: 1450px;
+    border: 2px solid white;
+}
+
+.history {
+    position: fixed;
+    bottom: 0;
+    width: 250px;
+}
+
+.rowh {
+    padding: 10px;
+    color:yellow;
+    margin: 10px;
+    width: 200px;
+    font-size: 20px;
+    color:green;
+    border: 1px solid grey;
+    border-radius: 5px;
 }
