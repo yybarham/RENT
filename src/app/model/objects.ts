@@ -35,6 +35,7 @@ export class CarType {
   DailyPenalty: number;
   Year: number;
   GearType: number;
+  IsNew: boolean;
 }
 
 export class Order {

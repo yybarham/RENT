@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import { Car, CarType } from 'src/app/model/objects';
 import { Router } from '@angular/router';
@@ -9,6 +9,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./cars.component.css']
 })
 export class CarsComponent implements OnInit {
+
+  @Input() isEdit:boolean;
+
+  isAdmin = false;
 
   cars: Car[] = [];
   carTypes: CarType[] = [];

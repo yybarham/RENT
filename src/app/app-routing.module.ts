@@ -11,34 +11,28 @@ import { LoginComponent } from './pages/users/login.component';
 import { LoginGuardService, AdminGuardService, EmployeeGuardService } from './services/auth-guard.service';
 import { NewCarComponent } from './pages/cars/new-car.component';
 import { InfoComponent } from './info/info.component';
+import { SearchCarComponent } from './pages/cars/search-car.component';
+import { EditCarComponent } from './pages/cars/edit-car.component';
 
 
 
 const routes: Routes = [
+  // HOME
   { path: '', component: InfoComponent },
+  // ADMIN
   { path: 'users', component: UsersComponent, canActivate: [AdminGuardService] },
   { path: 'cartype', component: CarTypeComponent, canActivate: [AdminGuardService] },
-  { path: 'new-car', component: NewCarComponent },
-  
-
-  { path: 'return-car', component: ReturnCarComponent, canActivate: [EmployeeGuardService] },
-
-  { path: 'cars', component: CarsComponent, canActivate: [LoginGuardService] },
+  { path: 'editcar', component: EditCarComponent, canActivate: [AdminGuardService] },
   { path: 'orders', component: OrdersComponent, canActivate: [LoginGuardService] },
+  //EMPLOYEE
+  { path: 'return-car', component: ReturnCarComponent, canActivate: [EmployeeGuardService] },
+  // USER
+  { path: 'search', component: SearchCarComponent, canActivate: [LoginGuardService] },
   { path: 'new-order', component: NewOrderComponent, canActivate: [LoginGuardService] },
-  
+  // GUEST
   { path: 'register', component: ResigterComponent },
   { path: 'login', component: LoginComponent },
 
-  // { path: 'home', component: HomeComponent },
-  // { path: '', redirectTo: '/home', pathMatch: 'full' },
-  // { path: 'rentCar', component:  CarRentFormComponent},
-  // { path: 'searchHome', component:  SearchHomePageComponent},
-  // { path: 'finalForm', component:  FinalRentFormComponent},
-  // { path: 'editCar', component:  EditCarComponent},
-  // { path: 'createOrder', component:  CreateOrderComponent},
-  // { path: 'carTypes', component:  CarTypesComponent},
-  // { path: 'createCarType', component:  CreateCarTypeComponent}
 ];
 
 @NgModule({

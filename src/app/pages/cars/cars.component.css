@@ -84,3 +84,9 @@ input {
     border: 1px solid grey;
     border-radius: 5px;
 }
+
+.row2{
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+}

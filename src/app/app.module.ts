@@ -23,6 +23,8 @@ import { LoginGuardService } from './services/auth-guard.service';
 import { NewCarComponent } from './pages/cars/new-car.component';
 import { Pipes, CarType, BrType, GType, FilterCol, ComboTxt, FilterAll } from './utils/pipes';
 import { InfoComponent } from './info/info.component';
+import { SearchCarComponent } from './pages/cars/search-car.component';
+import { EditCarComponent } from './pages/cars/edit-car.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ import { InfoComponent } from './info/info.component';
     ResigterComponent,
     LoginComponent,
     NewCarComponent,
-    Pipes, CarType, BrType, GType, FilterCol, ComboTxt, FilterAll, InfoComponent
+    Pipes, CarType, BrType, GType, FilterCol, ComboTxt, FilterAll, InfoComponent, SearchCarComponent, EditCarComponent
   ],
   imports: [
     BrowserModule,

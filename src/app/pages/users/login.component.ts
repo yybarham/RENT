@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
 
   result: number = -1;
   public form1 = new FormGroup({
-    UserName: new FormControl('', [Validators.required]),
-    Password: new FormControl('', [Validators.required]),
+    UserName: new FormControl('1', [Validators.required]),
+    Password: new FormControl('1', [Validators.required]),
   });
 
   // tslint:disable-next-line:max-line-length

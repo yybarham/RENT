@@ -2,13 +2,12 @@
 
     <div class="main">
 
-        <div class="header">Car List </div>
+        <div class="header">Car List</div>
         <div class="row">
             <div><input type="text" [(ngModel)]="all" placeholder="Free text search all columns" style="width: 500px;">
             </div>
         </div>
         <div class="row">
-            <div class="col"> </div>
             <div class="col"><input type="text"></div>
             <div class="col-12"><input [(ngModel)]="manufacturer" type="text"></div>
             <div class="col"><input type="text"></div>
@@ -21,7 +20,6 @@
             <div class="col"> </div>
         </div>
         <div class="row">
-            <div class="col"> </div>
             <div class="col">Number</div>
             <div class="col-12">Manufacturer</div>
             <div class="col">Model</div>
@@ -33,33 +31,37 @@
         </div>
         <div *ngFor="let c of joinData | filterAll : all | filterCol : manufacturer :'Manufacturer' | filterCol : year :'Year' | ComboTxt : gear : 'GearType' "
             class="row" [ngClass]="{ 'row-selected' : c.selected  }">
-            <div class="col"><button (click)='choose(c.Number)'>choose</button> </div>
-            <div class="col">{{c.Number}}</div>
-            <div class="col-12">{{c.Manufacturer}}</div>
-            <div class="col">{{c.Model}}</div>
-            <div class="col">{{c.GearType | GType }}</div>
-            <div class="col">{{c.Year}}</div>
-            <div class="col">{{c.Mileage}}</div>
-            <div class="col">{{c.Branch | BrType}}</div>
+            <div (click)='choose(c.Number)' class="row2">
+
+                <div class="col">{{c.Number}}</div>
+                <div class="col-12">{{c.Manufacturer}}</div>
+                <div class="col">{{c.Model}}</div>
+                <div class="col">{{c.GearType | GType }}</div>
+                <div class="col">{{c.Year}}</div>
+                <div class="col">{{c.Mileage}}</div>
+                <div class="col">{{c.Branch | BrType}}</div>
+            </div>
             <div class="col"><button (click)="editCar(c.Number)">edit</button><button
                     (click)="deleteCar(c.Number)">del</button></div>
 
         </div>
-        <div>
-            <button mat-raised-button color="primary" (click)="newCar()">New User</button>
+        <div *ngIf="isEdit">
+            <button mat-raised-button color="primary" (click)="newCar()">New Car 1</button>
         </div>
-        <p>
-            Selected Car: <span>{{chosen}}</span>
-        </p>
-        <br>
-        <div class="continue" *ngIf="false">
+        <div *ngIf="!isEdit" class="continue">
+            <div>
+                Selected Car: <span>{{chosen}}</span>
+            </div>
+            <br>
             <button mat-raised-button color="primary" (click)="next()">Continue Order</button>
             <p class="not-selected" *ngIf="clicked && !chosen">Not selected</p>
         </div>
+        
         <div class="col-xs-4 pic-abs">
             <img *ngIf="img" height="150" width="220" src="data:image/png;base64,{{img}}">
         </div>
-        <div>
+
+        <div *ngIf="isEdit">
             <app-new-car [selectedCar]="selectedCar" (eventToParent)='event1()' *ngIf="edit"></app-new-car>
         </div>
     </div>
