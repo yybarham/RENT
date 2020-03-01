@@ -70,17 +70,16 @@ input {
 
 .history {
     position: fixed;
-    bottom: 0;
-    width: 250px;
+    bottom: 30px;
+    width: 1250px;
 }
 
 .rowh {
-    padding: 10px;
-    color:yellow;
+    padding: 15px;
     margin: 10px;
     width: 200px;
     font-size: 20px;
-    color:green;
+    color: green;
     border: 1px solid grey;
     border-radius: 5px;
 }
@@ -89,4 +88,7 @@ input {
     width: 100%;
     display: flex;
     flex-flow: row;
+}
+.rows{
+    background-color: hotpink;
 }

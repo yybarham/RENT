@@ -83,7 +83,9 @@ export class CarsComponent implements OnInit {
   next() {
     this.clicked = true;
     if (this.chosen) {
-      localStorage.setItem('chosen', this.chosen);
+      localStorage.setItem('chosen_number', this.chosen);
+      const chosen_type = this.cars.filter(c => c.Number === this.chosen)[0].CarType;
+      localStorage.setItem('chosen_type', chosen_type.toString());
       this.router.navigate(['new-order']);
     }
   }

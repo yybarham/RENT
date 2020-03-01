@@ -70,7 +70,8 @@
     </div>
 </div>
 <div class="history">
-    <div class="rowh" *ngFor="let h of history " (click)="choose(h,true)">
+    <span class="rowh" *ngFor="let h of history " (click)="choose(h,true)" [ngClass]="chosen==h?'rows':''">
         {{ h }}
-    </div>
+         
+    </span>
 </div>

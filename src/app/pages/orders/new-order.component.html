@@ -6,7 +6,7 @@
 
         <br>
         <div>
-            Selected Car : {{ chosen }}
+            Selected Car : {{ chosen }} {{selectedType?.DailyCost}} [{{loginGuardService.logged}}]
         </div>
         <div>
             <mat-form-field>
@@ -38,5 +38,5 @@
         <p *ngIf="isNOK">Action Failed</p>
         
     </div>
-    {{ order | json }}
+    {{ current_order | json }}
 </div>

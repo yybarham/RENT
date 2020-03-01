@@ -6,7 +6,7 @@
 
 	<div class="main-menu">
 		<div>
-			<span *ngIf="loginGuardService.logged">[{{loginGuardService.logged}}] : 
+			<span *ngIf="loginGuardService.logged">User: [{{loginGuardService.logged}}] : 
 				<a id="logout"(click)="logout()">logout</a></span>
 			<span *ngIf="!loginGuardService.logged">guest, 
 				<a id="login" routerLink="/login">login</a></span>

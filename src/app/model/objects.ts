@@ -43,7 +43,7 @@ export class Order {
   StartDate: Date;
   EndDate: Date;
   ActualDate: Date;
-  Id: number;
+  UserName:string;
   Number: string;
   Payed: number;
 }

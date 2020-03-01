@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
-import { Order } from 'src/app/model/objects';
+import { Order, CarType } from 'src/app/model/objects';
 import { ThrowStmt } from '@angular/compiler';
+import { LoginGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-new-order',
@@ -17,25 +18,36 @@ export class NewOrderComponent implements OnInit {
   price = 0;
   minDate1 = new Date();
   minDate2 = new Date();
-  order = new Order();
-  constructor(private httpService: HttpService) { }
+  current_order = new Order();
+  carTypes: CarType[] = [];
+  selectedType: CarType;
+  constructor(private httpService: HttpService, private loginGuardService:LoginGuardService ) {
+    this, httpService.getCarType().subscribe(res => {
+      this.carTypes = res;
+      console.log(this.carTypes);
+      this.chosen = localStorage.getItem('chosen_number');
+      const chosen_type = localStorage.getItem('chosen_type');
+      this.selectedType = this.carTypes.filter(t => t.Id === +chosen_type)[0];
+    });
+  }
 
   ngOnInit() {
-    this.chosen = localStorage.getItem('chosen');
+
   }
 
   calculate() {
-    this.price = 100;
+    this.price = this.days * this.selectedType.DailyCost;
   }
 
   placeOrder() {
 
     if (this.price > 0) {
       if (confirm('Are you sure ?')) {
-        this.order.ActualDate = null;
-        this.order.Id = 1000;
-        this.order.Number = this.chosen;
-        this.httpService.saveOrder(this.order).subscribe(res => {
+        this.current_order.ActualDate = null;
+        this.current_order.UserName = this.loginGuardService.logged;
+        this.current_order.Number = this.chosen;
+        console.log(100, this.current_order)
+        this.httpService.saveOrder(this.current_order).subscribe(res => {
           this.isOK = res;
           this.isNOK = !res;
         });
@@ -48,14 +60,14 @@ export class NewOrderComponent implements OnInit {
     const selected: Date = new Date(event.value);
     selected.setDate(selected.getDate() + 1);
     if (id === 1) {
-      this.order.StartDate = selected;
+      this.current_order.StartDate = selected;
       this.minDate2 = selected;
     } else {
-      this.order.EndDate = selected;
+      this.current_order.EndDate = selected;
     }
 
-    if (this.order.StartDate && this.order.EndDate) {
-      const diff = (this.order.EndDate.getTime() - this.order.StartDate.getTime()) / (1000 * 60 * 60 * 24);
+    if (this.current_order.StartDate && this.current_order.EndDate) {
+      const diff = (this.current_order.EndDate.getTime() - this.current_order.StartDate.getTime()) / (1000 * 60 * 60 * 24);
       this.days = diff + 1;
       if (this.days > 0) {
         this.calculate();
