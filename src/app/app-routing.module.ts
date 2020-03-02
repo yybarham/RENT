@@ -13,6 +13,7 @@ import { NewCarComponent } from './pages/cars/new-car.component';
 import { InfoComponent } from './info/info.component';
 import { SearchCarComponent } from './pages/cars/search-car.component';
 import { EditCarComponent } from './pages/cars/edit-car.component';
+import { EditOrderComponent } from './pages/orders/edit-order.component';
 
 
 
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent, canActivate: [AdminGuardService] },
   { path: 'cartype', component: CarTypeComponent, canActivate: [AdminGuardService] },
   { path: 'editcar', component: EditCarComponent, canActivate: [AdminGuardService] },
-  { path: 'orders', component: OrdersComponent, canActivate: [LoginGuardService] },
+  { path: 'edit-order', component: EditOrderComponent, canActivate: [EmployeeGuardService] },
   //EMPLOYEE
   { path: 'return-car', component: ReturnCarComponent, canActivate: [EmployeeGuardService] },
   // USER

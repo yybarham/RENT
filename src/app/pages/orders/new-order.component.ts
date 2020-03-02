@@ -47,6 +47,7 @@ export class NewOrderComponent implements OnInit {
         this.current_order.UserName = this.loginGuardService.logged;
         this.current_order.Number = this.chosen;
         console.log(100, this.current_order)
+        this.current_order.IsNew = true;
         this.httpService.saveOrder(this.current_order).subscribe(res => {
           this.isOK = res;
           this.isNOK = !res;

@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   result: number = -1;
   public form1 = new FormGroup({
-    UserName: new FormControl('1', [Validators.required]),
+    UserName: new FormControl('admin', [Validators.required]),
     Password: new FormControl('1', [Validators.required]),
   });
 
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         if (this.route.snapshot.params.url) {
           setTimeout(() => {
             this.router.navigate([this.route.snapshot.params.url]);
-          }, 1300)
+          }, 13)
         } else {
 
           this.router.navigate(['/']);

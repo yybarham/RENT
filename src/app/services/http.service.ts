@@ -36,6 +36,11 @@ export class HttpService {
     return this.http.post<boolean>(urlUsers, order, { headers: { 'Content-Type': 'application/json' } }).pipe();
   }
 
+  deleteOrder(id): Observable<boolean> {
+    const urlUsers = baseUrl + 'DeleteOrder/' + id;
+    return this.http.get<boolean>(urlUsers).pipe();
+  }
+
   returnCar(order: Order): Observable<boolean> {
     const urlUsers = baseUrl + 'ReturnCar';
     return this.http.post<boolean>(urlUsers, order, { headers: { 'Content-Type': 'application/json' } }).pipe();

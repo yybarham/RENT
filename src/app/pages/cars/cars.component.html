@@ -27,7 +27,7 @@
             <div class="col">Year</div>
             <div class="col">Mileage</div>
             <div class="col">Branch</div>
-            <div class="col"> </div>
+            <div class="col" *ngIf="isEdit"> </div>
         </div>
         <div *ngFor="let c of joinData | filterAll : all | filterCol : manufacturer :'Manufacturer' | filterCol : year :'Year' | ComboTxt : gear : 'GearType' "
             class="row" [ngClass]="{ 'row-selected' : c.selected  }">
@@ -41,8 +41,9 @@
                 <div class="col">{{c.Mileage}}</div>
                 <div class="col">{{c.Branch | BrType}}</div>
             </div>
-            <div class="col"><button (click)="editCar(c.Number)">edit</button><button
-                    (click)="deleteCar(c.Number)">del</button></div>
+            <div class="col" *ngIf="isEdit">
+                <button (click)="editCar(c.Number)">edit</button>
+                <button (click)="deleteCar(c.Number)">del</button></div>
 
         </div>
         <div *ngIf="isEdit">

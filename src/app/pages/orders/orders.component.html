@@ -2,25 +2,35 @@
 
     <div class="main">
 
-        <div class="header">Order List </div>
+        <div class="header">Order List</div>
+
+        <div>Search for a car: <input type="text" class="input1" [(ngModel)]="n1"></div>
+
         <div class="row">
             <div class="col">OrderId</div>
             <div class="col">StartDate</div>
             <div class="col">EndDate</div>
             <div class="col">ActualDate</div>
-            <div class="col">Id</div>
+            <div class="col">UserName</div>
             <div class="col">Number</div>
             <div class="col"></div>
         </div>
-        <div *ngFor="let o of orders | slice:0:8" class="row">
+        <div *ngFor="let o of orders | filterCol  : n1 : 'Number' | slice:0:18" class="row">
             <div class="col">{{o.OrderId}}</div>
             <div class="col">{{o.StartDate | date:'dd/MM/yyyy'}}</div>
             <div class="col">{{o.EndDate | date:'dd/MM/yyyy'}}</div>
             <div class="col">{{o.ActualDate | date:'dd/MM/yyyy'}}</div>
-            <div class="col">{{o.Id}}</div>
+            <div class="col">{{o.UserName}}</div>
             <div class="col">{{o.Number}}</div>
-            <div class="col"><button (click)="choose(o.OrderId)" >choose</button></div>
+            <div class="col" *ngIf="action=='return-car'">
+                <button (click)="choose(o.OrderId)" >car to return</button>
+            </div>
+            <div class="col" *ngIf="action=='edit'">
+                <button  (click)="edit(o.OrderId)">edit</button>
+                <button  (click)="delete(o.OrderId)">delete</button>
+            </div>
         </div>
-    </div>
+
+     </div>
 </div>
  

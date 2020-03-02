@@ -31,6 +31,7 @@ export class NewUserComponent implements OnInit, OnChanges {
   constructor(private httpService: HttpService) {
     this.initForm();
   }
+  
   ngOnChanges() {
 
     console.log(this.selectedUser.Id);

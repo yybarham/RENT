@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 })
 export class CarsComponent implements OnInit {
 
-  @Input() isEdit:boolean;
+  @Input() isEdit: boolean;
 
-  isAdmin = false;
+  //isAdmin = false;
 
   cars: Car[] = [];
   carTypes: CarType[] = [];

@@ -1,16 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'pipe'
+  name: 'Role'
 })
-export class Pipes implements PipeTransform {
-
-  transform(value: any, ...args: any[]): any {
-    return null;
+export class Role implements PipeTransform {
+  transform(value: number): string {
+    switch (value) {
+      case 1: return 'Admin';
+      case 2: return 'Employee';
+      case 3: return 'User';
+      default:
+        return '';
+    }
   }
-
 }
-
 @Pipe({
   name: 'CarType'
 })

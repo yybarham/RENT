@@ -1,11 +1,9 @@
 <div>
 
     <div class="main">
-
-        <div>Search for a car: <input type="text" class="input1">
-
-        </div>
-        <app-orders  (valueChange)='displayCounter($event)' ></app-orders>
+        
+        <app-orders  (valueChange)='displayCounter($event)' [action]="'return-car'" ></app-orders>
+        
         <div>
             <mat-form-field>
                 <mat-label>Choose Return date</mat-label>

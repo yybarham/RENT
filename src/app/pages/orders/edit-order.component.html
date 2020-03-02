@@ -1,0 +1,54 @@
+<div>
+
+    <div class="main">
+
+        <app-orders (valueChange)='startEdit($event)' [action]="'edit'"[data]="data"></app-orders>
+
+        <br>
+        <ng-container *ngIf="selectedOrder">
+
+            <div class="page-body brd1" style="display: flex;flex-flow: row;">
+
+                <div style="width: 20%;">
+                    <div class="names">OrderId:</div>
+                    <div class="names">StartDate:</div>
+                    <div class="names">EndDate:</div>
+                    <div class="names">ActualDate:</div>
+                    <div class="names">UserName:</div>
+                    <div class="names">Number:</div>
+                    <div class="names">Payed:</div>
+                </div>
+                <div style="width: 75%;" [formGroup]="form1">
+                    <div class="fields">{{selectedOrder?.OrderId}} </div>
+                    <div class="fields"><input formControlName="StartDate" required type="text" class="input1 w300">
+                    </div>
+                    <div class="fields"><input formControlName="EndDate" required type="text" class="input1 w300"></div>
+                    <div class="fields"><input formControlName="ActualDate" required type="text" class="input1 w300">
+                    </div>
+                    <div class="fields"><input formControlName="UserName" required type="text" class="input1 w300">
+                    </div>
+                    <div class="fields"><input formControlName="Number" required type="text" class="input1 w300"></div>
+                    <div class="fields"><input formControlName="Payed" required type="text" class="input1 w300"></div>
+
+                </div>
+            </div>
+            <div>
+                <button mat-raised-button color="primary" style="background-color:goldenrod;" (click)="saveOrder()">Save
+                    Order</button>
+            </div>
+        </ng-container>
+
+    </div>
+</div>
+<!-- 
+    /*
+  OrderId: number;
+  StartDate: Date;
+  EndDate: Date;
+  ActualDate: Date;
+  UserName:string;
+  Number: string;
+  Payed: number;
+  IsNew: boolean;
+*/
+-->

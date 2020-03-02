@@ -39,6 +39,9 @@ export class CarType {
 }
 
 export class Order {
+  public constructor(init?: Partial<Order>) {
+    Object.assign(this, init);
+}
   OrderId: number;
   StartDate: Date;
   EndDate: Date;
@@ -46,4 +49,5 @@ export class Order {
   UserName:string;
   Number: string;
   Payed: number;
+  IsNew: boolean;
 }
