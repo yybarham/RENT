@@ -12,8 +12,6 @@ export class CarsComponent implements OnInit {
 
   @Input() isEdit: boolean;
 
-  //isAdmin = false;
-
   cars: Car[] = [];
   carTypes: CarType[] = [];
   joinData: any[] = [];
@@ -56,8 +54,12 @@ export class CarsComponent implements OnInit {
       this.httpService.getCarType().subscribe(res2 => {
         this.carTypes = res2;
         this.joinData = this.innerJoin(this.carTypes, this.cars,
-          ({ Id, Manufacturer, Model, Year, GearType }, { Number, CarType, Mileage, Branch, Image, selected }) =>
-            CarType === Id && { Number, CarType, Model, Mileage, Id, Manufacturer, GearType, Year, Branch, Image, selected });
+          ({ Id, Manufacturer, Model, Year, GearType }, { Number, CarType, Mileage, Branch, Image, IsFree, selected }) =>
+            CarType === Id && { Number, CarType, Model, Mileage, Id, Manufacturer, GearType, Year, Branch, IsFree, Image, selected });
+
+        if (!this.isEdit) {
+          this.joinData = this.joinData.filter(c => c.IsFree);
+        }
       });
     });
 

@@ -35,7 +35,7 @@ export class UsersComponent {
 
   newUser() {
     this.selectedUser = new User();
-    this.selectedUser.FullName = 'new use';
+    this.selectedUser.Id = 0;
     this.selectedUser.IsNew = true;
     this.edit = true;
   }

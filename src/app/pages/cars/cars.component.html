@@ -2,7 +2,8 @@
 
     <div class="main">
 
-        <div class="header">Car List</div>
+        <div *ngIf="!isEdit" class="header">Search A Car</div>
+        <div *ngIf="isEdit" class="header">Car List</div>
         <div class="row">
             <div><input type="text" [(ngModel)]="all" placeholder="Free text search all columns" style="width: 500px;">
             </div>
@@ -50,7 +51,7 @@
             <button mat-raised-button color="primary" (click)="newCar()">New Car 1</button>
         </div>
         <div *ngIf="!isEdit" class="continue">
-            <div>
+            <div style="font-size: 30px;color: orangered;">
                 Selected Car: <span>{{chosen}}</span>
             </div>
             <br>

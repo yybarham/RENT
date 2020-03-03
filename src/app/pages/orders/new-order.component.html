@@ -28,8 +28,8 @@
         <br>        
         
         <br>
-        <div>
-            <span>Total Price : {{price}} $</span>
+        <div style="font-size: 30px;color: orangered;">
+            <span>Total Price : {{price | number:'1.2-2' }} $</span>
         </div>
         <br>
         <button mat-raised-button color="primary" (click)="placeOrder()">Place Order</button>

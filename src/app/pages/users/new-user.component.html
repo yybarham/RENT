@@ -3,32 +3,31 @@
     <div class="header">
         <h3 class="title"> Create User </h3>
     </div>
-
     <div class="page-body brd1" style="display: flex;flex-flow: row;">
         
         <div  style="width: 20%;">
-            <div class="names">Id:</div>
+            <div *ngIf="!isRegister && selectedUser.Id>0" class="names">Id:</div>
             <div class="names">UserName:</div>            
             <div class="names">FullName:</div>
             <div class="names">Gender:</div>                        
             <div class="names">Email:</div>            
             <div class="names">Password:</div>            
-            <div class="names">Role:</div>            
+            <div *ngIf="!isRegister" class="names">Role:</div>            
         </div>
         <div  style="width: 75%;" [formGroup]="form1"  >            
-            <div class="fields"><input formControlName="Id" required  type="text" class="input1 w300" ></div>
-            <div class="fields"><input formControlName="UserName" required  type="text" class="input1 w300" ></div>
-            <div class="fields"><input formControlName="FullName" required  type="text" class="input1 w300" ></div>
-            <div class="fields"><input formControlName="Gender" required  type="text" class="input1 w300" ></div>
-            <div class="fields"><input formControlName="Email" required  type="text" class="input1 w300" ></div>
-            <div class="fields"><input formControlName="Password" required  type="text" class="input1 w300" ></div>
-            <div class="fields"><input formControlName="Role" required  type="text" class="input1 w300" ></div>  
+            <div *ngIf="!isRegister && selectedUser.Id>0" class="fields"><input formControlName="Id" required  type="text" class="input1 w300" ></div>
+            <div class="fields"><input formControlName="UserName" required  type="text" class="input1 w300" [ngClass]="{'red': inValid('UserName')  }"></div>
+            <div class="fields"><input formControlName="FullName" required  type="text" class="input1 w300" [ngClass]="{'red': inValid('FullName')  }" ></div>
+            <div class="fields"><input formControlName="Gender" required  type="text" class="input1 w300" [ngClass]="{'red': inValid('Gender')  }"></div>
+            <div class="fields"><input formControlName="Email" required  type="text" class="input1 w300"[ngClass]="{'red': inValid('Email')  }" ></div>
+            <div class="fields"><input formControlName="Password" required  type="text" class="input1 w300" [ngClass]="{'red': inValid('Password')  }"></div>
+            <div *ngIf="!isRegister" class="fields"><input formControlName="Role" required  type="text" class="input1 w300"  ></div>  
                    
         </div>
     </div>
     <div>
-        <button mat-raised-button color="primary" (click)="saveUser()">Save User</button>
-        <button mat-raised-button color="primary" (click)="register()">Send</button>
+        <button *ngIf="!isRegister" mat-raised-button color="primary" (click)="saveUser()">Save User</button>
+        <button *ngIf="isRegister" mat-raised-button color="primary" (click)="register()">Send</button>
     </div>
 
 </div>

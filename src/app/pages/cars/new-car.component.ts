@@ -73,9 +73,7 @@ export class NewCarComponent implements OnInit, OnChanges {
     this.selectedCar = new Car(this.form1.value);
     this.selectedCar.IsNew = isNew;
     if (this.form1.invalid) {
-      Object.keys(this.form1.controls).forEach(key => {
-        this.form1.get(key).markAsTouched();
-      });
+      this.touchForm();
       alert('not valid');
       return;
     }
@@ -90,5 +88,10 @@ export class NewCarComponent implements OnInit, OnChanges {
     return this.form1.get(name).invalid && this.form1.get(name).touched;
   }
 
+  touchForm(){
+    Object.keys(this.form1.controls).forEach(key => {
+      this.form1.get(key).markAsTouched();
+    });
+  }
 
 }

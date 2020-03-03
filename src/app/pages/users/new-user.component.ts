@@ -11,6 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class NewUserComponent implements OnInit, OnChanges {
 
   @Input() selectedUser: User = new User();
+  @Input() isRegister: boolean = false;
   @Output() valueChange = new EventEmitter();
 
   user: User = new User();
@@ -18,24 +19,24 @@ export class NewUserComponent implements OnInit, OnChanges {
 
   initForm() {
     this.form1 = new FormGroup({
-      Id: new FormControl('', [Validators.required]),
-      UserName: new FormControl('', [Validators.required]),
-      FullName: new FormControl('', [Validators.required]),
+      Id: new FormControl(''),
+      UserName: new FormControl('userX', [Validators.required]),
+      FullName: new FormControl('new user', [Validators.required]),
       Email: new FormControl('', [Validators.required]),
       Gender: new FormControl('', [Validators.required]),
       Password: new FormControl('', [Validators.required]),
-      Role: new FormControl('', [Validators.required]),
+      Role: new FormControl(''),
     });
 
   }
   constructor(private httpService: HttpService) {
     this.initForm();
   }
-  
+
   ngOnChanges() {
 
-    console.log(this.selectedUser.Id);
-    if (this.selectedUser.Id) {
+    console.log(111, this.selectedUser);
+    if (this.selectedUser.Id>0) {
       Object.keys(this.selectedUser).forEach(key => {
         if (this.form1.controls[key]) {
           this.form1.controls[key].setValue(this.selectedUser[key]);
@@ -61,19 +62,37 @@ export class NewUserComponent implements OnInit, OnChanges {
         }
       });
     } else {
-      alert('not valid');
+
+      //alert('not valid');
+      this.touchForm();
     }
   }
   register() {
-    this.selectedUser = new User(this.form1.value);    
+
+    this.selectedUser = new User(this.form1.value);
     this.selectedUser.IsNew = true;
-    this.httpService.saveUser(this.selectedUser).subscribe(res => {
-      if (res) {
-        alert('register');
-      } else {
-        alert('error');
-      }
+    this.selectedUser.Role = 3;
+    if (this.form1.valid) {
+      this.httpService.saveUser(this.selectedUser).subscribe(res => {
+        if (res) {
+          alert('register');
+        } else {
+          alert('error');
+        }
+      });
+    } else {
+      this.touchForm();
+    }
+  }
+
+  touchForm() {
+    Object.keys(this.form1.controls).forEach(key => {
+      this.form1.get(key).markAsTouched();
     });
   }
+  inValid(name) {
+    return this.form1.get(name).invalid && this.form1.get(name).touched;
+  }
+
 
 }

@@ -6,15 +6,15 @@
 
 	<div class="main-menu">
 		<div>
-			<span *ngIf="loginGuardService.logged">User: [{{loginGuardService.logged}}] : 
-				<a id="logout"(click)="logout()">logout</a></span>
-			<span *ngIf="!loginGuardService.logged">guest, 
+			<span *ngIf="loginGuardService.logged">User: [{{loginGuardService.logged}}] :
+				<a id="logout" (click)="logout()">logout</a></span>
+			<span *ngIf="!loginGuardService.logged">guest,
 				<a id="login" routerLink="/login">login</a></span>
 		</div>
 		<br>
 		<ul>
 			<li>
-				<a href="">Admin</a>
+				<a>Admin</a>
 				<ul>
 					<li><a routerLink="/users">User List</a></li>
 					<li><a routerLink="/editcar">Car List</a></li>
@@ -23,19 +23,19 @@
 				</ul>
 			</li>
 			<li>
-				<a href="">Employee</a>
+				<a>Employee</a>
 				<ul>
 					<li><a routerLink="/return-car">Return a car</a></li>
 				</ul>
 			</li>
 			<li>
-				<a href="">User</a>
+				<a>User</a>
 				<ul>
 					<li><a routerLink="/search">Search Car</a></li>
 				</ul>
 			</li>
 			<li>
-				<a href="">Guest</a>
+				<a>Guest</a>
 				<ul>
 					<li><a routerLink="/register">Register</a></li>
 					<li><a routerLink="/login">Login</a></li>
