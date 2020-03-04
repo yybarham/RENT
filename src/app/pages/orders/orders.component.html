@@ -2,7 +2,7 @@
 
     <div class="main">
 
-        <div class="header">Order List</div>
+        <div class="header">Order List (top 10)</div>
 
         <div>Search for a car: <input type="text" class="input1" [(ngModel)]="n1"></div>
 
@@ -15,7 +15,7 @@
             <div class="col">Number</div>
             <div class="col"></div>
         </div>
-        <div *ngFor="let o of orders | filterCol  : n1 : 'Number' | slice:0:18" class="row">
+        <div *ngFor="let o of orders | filterCol  : n1 : 'Number' | slice:0:10" class="row">
             <div class="col">{{o.OrderId}}</div>
             <div class="col">{{o.StartDate | date:'dd/MM/yyyy'}}</div>
             <div class="col">{{o.EndDate | date:'dd/MM/yyyy'}}</div>

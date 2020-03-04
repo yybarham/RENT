@@ -11,22 +11,41 @@ export class ReturnCarComponent implements OnInit {
 
   selectedOrder: Order;
   returnDate: Date;
-  constructor(private httpService: HttpService) { }
+  data: string = '';
 
+
+  constructor(private httpService: HttpService) { }
+  msgid = 0;
   ngOnInit() {
   }
 
   onDateChange(event: any) {
     this.returnDate = new Date(event.value);
+    this.msgid = 0;
   }
 
   returnCar() {
+    if (this.selectedOrder == null) {
+      this.msgid = 1;
+      return;
+    }
+    if (this.returnDate == null) {
+      this.msgid = 2;
+      return;
+    }
+    this.msgid = 0;
     const order = new Order();
     order.OrderId = this.selectedOrder.OrderId;
     order.ActualDate = this.returnDate;
     order.Payed = 99;
     this.httpService.returnCar(order).subscribe(res => {
-      alert(res);
+      if (res) {
+        this.selectedOrder = null;
+        this.msgid = 3;
+        this.data = new Date().toString();
+      } else {
+        this.msgid = 4;
+      }
     });
   }
   displayCounter(selected: Order) {

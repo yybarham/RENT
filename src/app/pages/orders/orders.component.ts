@@ -21,14 +21,16 @@ export class OrdersComponent implements OnInit, OnChanges {
   }
   ngOnChanges(changes: SimpleChanges) {
     if (changes['data']) {
-      this.getOrders() ;
+      this.getOrders();
     }
   }
 
   getOrders() {
     this.httpService.getOrders().subscribe(res => {
       this.orders = res;
-      this.orders = this.orders.filter(o => o.ActualDate == null);
+      if (this.action == 'return-car') {
+        this.orders = this.orders.filter(o => o.ActualDate == null);
+      }
       this.orders.sort(this.sort);
     });
   }
