@@ -20,7 +20,7 @@
             <div class="col">{{u.UserName}}</div>
             <div class="col">{{u.FullName}}</div>
             <div class="col-2">{{u.Email}}</div>
-            <div class="col">{{u.Gender}}</div>
+            <div class="col">{{u.Gender | GenType }}</div>
             <div class="col">{{u.Password}}</div>
             <div class="col">{{u.Role | Role}}</div>
             <div class="col-2"><button (click)="editUser(u.Id)">edit</button>&nbsp; <button (click)="deleteUser(u.Id)">delete</button></div>

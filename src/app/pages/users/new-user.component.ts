@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { User } from 'src/app/model/objects';
 import { HttpService } from 'src/app/services/http.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
 
 @Component({
@@ -15,20 +15,20 @@ export class NewUserComponent implements OnInit, OnChanges {
   @Input() isRegister: boolean = false;
   @Output() valueChange = new EventEmitter();
 
-  result = 0;
+  result;
   user: User = new User();
   form1;
 
   ddlList = [{ key: 1, value: 'Male' }, { key: 2, value: 'Female' }];
-
+  unamePattern = "^[A-Za-z0-9]{5,15}$";
   initForm() {
     this.form1 = new FormGroup({
       Id: new FormControl(''),
-      UserName: new FormControl('userX', [Validators.required]),
-      FullName: new FormControl('new user', [Validators.required]),
+      UserName: new FormControl('userN', [Validators.required, Validators.pattern(this.unamePattern)]),
+      FullName: new FormControl('new user', [Validators.required, Validators.minLength(5)]),
       Email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
-      Gender: new FormControl('', [Validators.required]),
-      Password: new FormControl('', [Validators.required]),
+      Gender: new FormControl('', [Validators.required, this.validateValue]),
+      Password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       Role: new FormControl(''),
     });
 
@@ -38,8 +38,6 @@ export class NewUserComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-
-    console.log(111, this.selectedUser);
     if (this.selectedUser.Id > 0) {
       Object.keys(this.selectedUser).forEach(key => {
         if (this.form1.controls[key]) {
@@ -58,21 +56,20 @@ export class NewUserComponent implements OnInit, OnChanges {
     this.valueChange.emit();
   }
   saveUser() {
-    this.result = 0;
+    this.result = null;
     const isNew = this.selectedUser.IsNew;
     this.selectedUser = new User(this.form1.value);
     this.selectedUser.IsNew = isNew;
     if (this.form1.valid) {
 
       this.httpService.saveUser(this.selectedUser).subscribe(res => {
-        this.result = res ? 1 : -1;
+        this.result = res ;
         if (res) {
           this.valueChange.emit();
         }
       });
     } else {
 
-      //alert('not valid');
       this.touchForm();
     }
   }
@@ -83,8 +80,8 @@ export class NewUserComponent implements OnInit, OnChanges {
     this.selectedUser.Role = 3;
     if (this.form1.valid) {
       this.httpService.saveUser(this.selectedUser).subscribe(res => {
-        this.result = res ? 1 : -1;
-        if (res) {
+        this.result = res ;
+        if (res==1) {
           setTimeout(() => {
             this.valueChange.emit();
           }, 1500);
@@ -104,5 +101,27 @@ export class NewUserComponent implements OnInit, OnChanges {
     return this.form1.get(name).invalid && this.form1.get(name).touched;
   }
 
+  validateValue(control: AbstractControl) {
+    const val = control.value;
+
+    if (val === null || val === undefined || val === '') {
+      return {
+        validateValue: {
+          valid: false
+        }
+      };
+    } else {
+      if (+val === 1 || +val === 2) {
+        return null;
+      } else {
+        return {
+          validateValue: {
+            valid: false
+          }
+        };
+      }
+    }
+
+  }
 
 }

@@ -16,11 +16,11 @@
         </div>
         <div  style="width: 75%;" [formGroup]="form1"  >            
             <div *ngIf="!isRegister && selectedUser.Id>0" class="fields"><input formControlName="Id"    type="text" class="input1 w300" ></div>
-            <div class="fields"><input formControlName="UserName"    type="text" class="input1 w300" [ngClass]="{'red': inValid('UserName')  }"></div>
-            <div class="fields"><input formControlName="FullName"    type="text" class="input1 w300" [ngClass]="{'red': inValid('FullName')  }" ></div>
+            <div class="fields"><input formControlName="UserName"    type="text" class="input1 w300" [ngClass]="{'red': inValid('UserName')  }">(letters and numbers len 5-15)</div>
+            <div class="fields"><input formControlName="FullName"    type="text" class="input1 w300" [ngClass]="{'red': inValid('FullName')  }" >(letters, min 5)</div>
             <div class="fields"><input formControlName="Gender"     type="number" class="input1 w300" [ngClass]="{'red': inValid('Gender')  }">(1-male,2-female)</div>
             <div class="fields"><input formControlName="Email"    type="text" class="input1 w300"[ngClass]="{'red': inValid('Email')  }" ></div>
-            <div class="fields"><input formControlName="Password"    type="text" class="input1 w300" [ngClass]="{'red': inValid('Password')  }"></div>
+            <div class="fields"><input formControlName="Password"    type="text" class="input1 w300" [ngClass]="{'red': inValid('Password')  }">(minlen-6)</div>
             <div *ngIf="!isRegister" class="fields"><input formControlName="Role"    type="text" class="input1 w300"  >(1-admin,2-emp,3-user)</div>  
                    
         </div>
@@ -29,8 +29,9 @@
         <button *ngIf="!isRegister" mat-raised-button color="primary" (click)="saveUser()">Save User</button>
         <button *ngIf="isRegister" mat-raised-button color="primary" (click)="register()">Send</button>
         <button  mat-raised-button color="primary" (click)="cancel()">cancel</button>
-        <div *ngIf="result>0">User Created Successfuly</div>
-        <div style="color: red;" *ngIf="result<0">Failed to create User</div>
+        <div *ngIf="result==1">User Created Successfuly</div>
+        <div style="color: red;" *ngIf="result==0">Unknown error</div>
+        <div style="color: red;" *ngIf="result==-1">User Name already Exist</div>
     </div>
     
 </div>

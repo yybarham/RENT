@@ -61,6 +61,20 @@ export class GType implements PipeTransform {
 }
 
 @Pipe({
+  name: 'GenType'
+})
+export class GenType implements PipeTransform {
+  transform(value: number): string {
+    switch (value) {
+      case 1: return 'Male';
+      case 2: return 'Female';
+      default:
+        return '';
+    }
+  }
+}
+
+@Pipe({
   name: 'filterCol'
 })
 export class FilterCol implements PipeTransform {

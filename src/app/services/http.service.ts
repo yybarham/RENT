@@ -46,9 +46,9 @@ export class HttpService {
     return this.http.post<boolean>(urlUsers, order, { headers: { 'Content-Type': 'application/json' } }).pipe();
   }
 
-  saveUser(user: User): Observable<boolean> {
+  saveUser(user: User): Observable<number> {
     const urlUsers = baseUrl + 'SaveUser';
-    return this.http.post<boolean>(urlUsers, user, { headers: { 'Content-Type': 'application/json' } }).pipe();
+    return this.http.post<number>(urlUsers, user, { headers: { 'Content-Type': 'application/json' } }).pipe();
   }
 
   DeleteUser(id): Observable<boolean> {
@@ -59,8 +59,8 @@ export class HttpService {
   Login(user: User): Observable<number> {
     const urlUsers = baseUrl + 'Login';
     return this.http.post<number>(urlUsers, user, { headers: { 'Content-Type': 'application/json' } }).pipe();
-  } 
-   saveCar(user: Car): Observable<boolean> {
+  }
+  saveCar(user: Car): Observable<boolean> {
     const urlUsers = baseUrl + 'SaveCar';
     return this.http.post<boolean>(urlUsers, user, { headers: { 'Content-Type': 'application/json' } }).pipe();
   }
