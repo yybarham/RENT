@@ -2,7 +2,7 @@
 
     <div class="main">
 
-        <app-orders (valueChange)='startEdit($event)' [action]="'edit'"[data]="data"></app-orders>
+        <app-orders (valueChange)='startEdit($event)' [action]="'edit'" [data]="data"></app-orders>
 
         <br>
         <ng-container *ngIf="selectedOrder">
@@ -33,8 +33,10 @@
                 </div>
             </div>
             <div>
-                <button mat-raised-button color="primary" style="background-color:goldenrod;" (click)="saveOrder()">Save
-                    Order</button>
+                <button mat-raised-button color="primary" style="background-color:goldenrod;" (click)="saveOrder()">
+                    Save Order</button>
+                    <button mat-raised-button color="primary" style="background-color:grey;" (click)="cancel()">
+                        Save Order</button>
             </div>
         </ng-container>
 

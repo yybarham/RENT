@@ -41,7 +41,10 @@ export class UsersComponent {
   }
   displayCounter() {
     this.getUsers();
-    this.edit = false;
+    
+    setTimeout(()=>{
+      this.edit = false;
+    },1500)
   }
 
   deleteUser(id) {

@@ -1,9 +1,11 @@
 <div>
 
     <div class="main">
-        <div class="header">Regiter</div>
-        <div class="row">
-            <app-new-user [isRegister]="'true'"></app-new-user>
+        <div class="header">
+            <h3 class="title"> Regiter </h3>
+            </div>
+        <div class="row" *ngIf="show">
+            <app-new-user [isRegister]="'true'" (valueChange)='eventFromChild()' ></app-new-user>
         </div>
     </div>
 </div>

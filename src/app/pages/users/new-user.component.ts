@@ -3,6 +3,7 @@ import { User } from 'src/app/model/objects';
 import { HttpService } from 'src/app/services/http.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-new-user',
   templateUrl: './new-user.component.html',
@@ -14,15 +15,18 @@ export class NewUserComponent implements OnInit, OnChanges {
   @Input() isRegister: boolean = false;
   @Output() valueChange = new EventEmitter();
 
+  result = 0;
   user: User = new User();
   form1;
+
+  ddlList = [{ key: 1, value: 'Male' }, { key: 2, value: 'Female' }];
 
   initForm() {
     this.form1 = new FormGroup({
       Id: new FormControl(''),
       UserName: new FormControl('userX', [Validators.required]),
       FullName: new FormControl('new user', [Validators.required]),
-      Email: new FormControl('', [Validators.required]),
+      Email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
       Gender: new FormControl('', [Validators.required]),
       Password: new FormControl('', [Validators.required]),
       Role: new FormControl(''),
@@ -36,7 +40,7 @@ export class NewUserComponent implements OnInit, OnChanges {
   ngOnChanges() {
 
     console.log(111, this.selectedUser);
-    if (this.selectedUser.Id>0) {
+    if (this.selectedUser.Id > 0) {
       Object.keys(this.selectedUser).forEach(key => {
         if (this.form1.controls[key]) {
           this.form1.controls[key].setValue(this.selectedUser[key]);
@@ -50,13 +54,18 @@ export class NewUserComponent implements OnInit, OnChanges {
   ngOnInit() {
 
   }
-
+  cancel() {
+    this.valueChange.emit();
+  }
   saveUser() {
+    this.result = 0;
     const isNew = this.selectedUser.IsNew;
     this.selectedUser = new User(this.form1.value);
     this.selectedUser.IsNew = isNew;
     if (this.form1.valid) {
+
       this.httpService.saveUser(this.selectedUser).subscribe(res => {
+        this.result = res ? 1 : -1;
         if (res) {
           this.valueChange.emit();
         }
@@ -74,10 +83,11 @@ export class NewUserComponent implements OnInit, OnChanges {
     this.selectedUser.Role = 3;
     if (this.form1.valid) {
       this.httpService.saveUser(this.selectedUser).subscribe(res => {
+        this.result = res ? 1 : -1;
         if (res) {
-          alert('register');
-        } else {
-          alert('error');
+          setTimeout(() => {
+            this.valueChange.emit();
+          }, 1500);
         }
       });
     } else {

@@ -8,8 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class ResigterComponent implements OnInit {
 
   constructor() { }
-
+  show = true;
   ngOnInit() {
+  }
+  eventFromChild(){
+    this.show = false;
   }
 
 }

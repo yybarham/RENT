@@ -55,4 +55,7 @@ export class EditOrderComponent implements OnInit  {
       // this.isNOK = !res;
     });
   }
+  cancel(){
+    
+  }
 }
