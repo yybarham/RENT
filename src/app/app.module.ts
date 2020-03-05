@@ -27,6 +27,7 @@ import { SearchCarComponent } from './pages/cars/search-car.component';
 import { EditCarComponent } from './pages/cars/edit-car.component';
 import { EditOrderComponent } from './pages/orders/edit-order.component';
 import { MyOrderComponent } from './pages/orders/my-order.component';
+import { StartOrderComponent } from './pages/orders/start-order.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,7 @@ import { MyOrderComponent } from './pages/orders/my-order.component';
     ResigterComponent,
     LoginComponent,
     NewCarComponent,
-    GenType, Role, CarType, BrType, GType, FilterCol, ComboTxt, FilterAll, InfoComponent, SearchCarComponent, EditCarComponent, EditOrderComponent, MyOrderComponent
+    GenType, Role, CarType, BrType, GType, FilterCol, ComboTxt, FilterAll, InfoComponent, SearchCarComponent, EditCarComponent, EditOrderComponent, MyOrderComponent, StartOrderComponent
   ],
   imports: [
     BrowserModule,

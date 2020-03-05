@@ -15,6 +15,7 @@ import { SearchCarComponent } from './pages/cars/search-car.component';
 import { EditCarComponent } from './pages/cars/edit-car.component';
 import { EditOrderComponent } from './pages/orders/edit-order.component';
 import { MyOrderComponent } from './pages/orders/my-order.component';
+import { StartOrderComponent } from './pages/orders/start-order.component';
 
 
 
@@ -29,12 +30,14 @@ const routes: Routes = [
   //EMPLOYEE
   { path: 'return-car', component: ReturnCarComponent, canActivate: [EmployeeGuardService] },
   // USER
-  { path: 'search', component: SearchCarComponent },
+  { path: 'start-order', component: StartOrderComponent, canActivate: [LoginGuardService] },
   { path: 'new-order', component: NewOrderComponent, canActivate: [LoginGuardService] },
   { path: 'my-order', component: MyOrderComponent, canActivate: [LoginGuardService] },  
   // GUEST
   { path: 'register', component: ResigterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'search', component: SearchCarComponent },
+  
 
 ];
 

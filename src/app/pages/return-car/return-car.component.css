@@ -1,33 +1,39 @@
-
-
-.input1 {    
+.input1 {
     border-radius: 8px;
     line-height: 1.5rem;
 }
+
 ::ng-deep .mat-focused .mat-form-field-label {
     /*change color of label*/
     color: blue !important;
-   }
-   
-   ::ng-deep.mat-form-field-underline {
+}
+
+::ng-deep.mat-form-field-underline {
     /*change color of underline*/
     background-color: blue !important;
-   } 
-   
-   ::ng-deep.mat-form-field-ripple {
+}
+
+::ng-deep.mat-form-field-ripple {
     /*change color of underline when focused*/
-    background-color: blue !important;;
-   }
-   
-   ::ng-deep .mat-form-field-label {
+    background-color: blue !important;
+    ;
+}
+
+::ng-deep .mat-form-field-label {
     /*change color of label*/
     color: blue !important;
-   }
-   
-   
-   mat-datepicker-toggle {
+}
+
+mat-datepicker-toggle {
     color: blue !important;
-   }
-   .red1{
-       color: red;;
-   }
+}
+
+.red1 {
+    color: red;
+    ;
+}
+
+.boldi {
+    font-size: 30px;
+    color: darkgoldenrod;
+}

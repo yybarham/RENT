@@ -5,8 +5,11 @@
         <app-orders (valueChange)='displayCounter($event)' [action]="'return-car'" [data]="data"></app-orders>
 
         <br>
-        <div style="font-size: 30px; color: darkgoldenrod;">Car To Return: {{selectedOrder?.Number}}</div>
+        <div class="boldi">Car To Return: {{selectedOrder?.Number}}</div>
         <br>
+        <div class="boldi">Daily Cost: {{dailyCost}}</div>
+        <br>
+
         <div>
             <mat-form-field>
                 <mat-label>Choose Return date</mat-label>
@@ -15,6 +18,9 @@
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
         </div>
+        <br>
+        <div class="boldi">Total To Pay: {{totalToPay}}</div>
+        <br>
         <div *ngIf="msgid==1" class="red1">Car Not Selected</div>
         <div *ngIf="msgid==2" class="red1">Date Not Selected</div>
 

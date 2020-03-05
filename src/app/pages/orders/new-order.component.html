@@ -28,9 +28,11 @@
         <br>        
         
         <br>
-        <div style="font-size: 30px;color: orangered;">
+        <div class="boldi">
             <span>Total Price : {{price | number:'1.2-2' }} $</span>
+            
         </div>
+        <div class="penalty" > DailyPenalty : {{ selectedType?.DailyPenalty }}</div>
         <br>
         <button mat-raised-button color="primary" (click)="placeOrder()">Place Order</button>
         <br>
