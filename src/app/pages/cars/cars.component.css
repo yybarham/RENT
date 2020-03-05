@@ -84,11 +84,17 @@ input {
     border-radius: 5px;
 }
 
-.row2{
+.row2 {
     width: 100%;
     display: flex;
     flex-flow: row;
 }
-.rows{
+
+.rows {
     background-color: hotpink;
+}
+
+.boldi {
+    font-size: 30px;
+    color: orangered;
 }

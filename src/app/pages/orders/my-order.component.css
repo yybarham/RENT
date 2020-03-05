@@ -1,0 +1,27 @@
+
+
+.header{
+    width: 400px;
+    margin: 0 auto;
+    font-size: 30px;
+    font-weight: bold;
+    padding: 20px 0;
+    text-decoration: underline;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    line-height: 2rem;
+    border-bottom: 1px solid grey;
+}
+
+.col {
+    width: 100px;
+    text-align: left;
+}
+.col-2 {
+    width: 200px;
+    text-align: left;
+}

@@ -2,60 +2,77 @@
 
     <div class="main">
 
-        <div *ngIf="!isEdit" class="header">Search A Car</div>
+        <div *ngIf="!isEdit" class="header">
+            <span *ngIf="!loginGuardService.logged" >Search & Calc</span>
+            <span *ngIf="loginGuardService.logged">Search & Order</span>
+        </div>
         <div *ngIf="isEdit" class="header">Car List</div>
         <div class="row">
-            <div><input type="text" [(ngModel)]="all" placeholder="Free text search all columns" style="width: 500px;">
+            <div>
+                <input type="text" [(ngModel)]="all" placeholder="Free text search all columns" style="width: 520px;">&nbsp;
+                <button (click)="clear()" >clear all</button>
             </div>
         </div>
         <div class="row">
-            <div class="col"><input type="text"></div>
-            <div class="col-12"><input [(ngModel)]="manufacturer" type="text"></div>
-            <div class="col"><input type="text"></div>
-            <div class="col-12"> <select class="opt" [(ngModel)]="gear">
-                    <option *ngFor='let c of comboGear' value="{{c.key}}">{{c.value}}</option>
-                </select></div>
-            <div class="col"><input [(ngModel)]="year" type="text"></div>
-            <div class="col"><input type="text"></div>
-            <div class="col"><input type="text"></div>
-            <div class="col"> </div>
+            <div class="col   "><input [(ngModel)]="number" type="text" ></div>
+            <div class="col-12"><input [(ngModel)]="mnf" type="text"></div>
+            <div class="col   "><input [(ngModel)]="model" type="text"></div>
+            <div class="col-12"><select class="opt" [(ngModel)]="gear"><option *ngFor='let c of comboGear' value="{{c.key}}">{{c.value}}</option></select></div>
+            <div class="col   "><input [(ngModel)]="year" type="text"></div>
+            <div class="col   "> </div>
+            <div class="col   "> </div>
+            <div class="col   " *ngIf="isEdit"> </div>
         </div>
         <div class="row">
             <div class="col">Number</div>
             <div class="col-12">Manufacturer</div>
-            <div class="col">Model</div>
+            <div class="col   ">Model</div>
             <div class="col-12">GearType</div>
-            <div class="col">Year</div>
-            <div class="col">Mileage</div>
-            <div class="col">Branch</div>
-            <div class="col" *ngIf="isEdit"> </div>
+            <div class="col   ">Year</div>
+            <div class="col   ">Mileage</div>
+            <div class="col   ">Branch</div>
+            <div class="col   " *ngIf="isEdit"> </div>
         </div>
-        <div *ngFor="let c of joinData | filterAll : all | filterCol : manufacturer :'Manufacturer' | filterCol : year :'Year' | ComboTxt : gear : 'GearType' "
+        <!--   -->
+        <div *ngFor="let c of joinData | filterAll : all  | filterCol : number :'Number' | filterCol : mnf :'Manufacturer' | filterCol : year :'Year'| filterCol : model :'Model' | ComboTxt : gear : 'GearType' "
             class="row" [ngClass]="{ 'row-selected' : c.selected  }">
             <div (click)='choose(c.Number)' class="row2">
 
-                <div class="col">{{c.Number}}</div>
+                <div class="col   ">{{c.Number}}</div>
                 <div class="col-12">{{c.Manufacturer}}</div>
-                <div class="col">{{c.Model}}</div>
-                <div class="col">{{c.GearType | GType }}</div>
-                <div class="col">{{c.Year}}</div>
-                <div class="col">{{c.Mileage}}</div>
-                <div class="col">{{c.Branch | BrType}}</div>
+                <div class="col   ">{{c.Model}}</div>
+                <div class="col-12">{{c.GearType | GType }}</div>
+                <div class="col   ">{{c.Year}}</div>
+                <div class="col   ">{{c.Mileage}}</div>
+                <div class="col   ">{{c.Branch | BrType}}</div>
             </div>
-            <div class="col" *ngIf="isEdit">
+            <div class="col-12" *ngIf="isEdit">
                 <button (click)="editCar(c.Number)">edit</button>
                 <button (click)="deleteCar(c.Number)">del</button></div>
-
-        </div>
+            </div>
         <div *ngIf="isEdit">
             <button mat-raised-button color="primary" (click)="newCar()">New Car 1</button>
         </div>
         <div *ngIf="!isEdit" class="continue">
-            <div style="font-size: 30px;color: orangered;">
+            <div class="boldi">
                 Selected Car: <span>{{chosen}}</span>
             </div>
             <br>
-            <button mat-raised-button color="primary" (click)="next()">Continue Order</button>
+            <div *ngIf="loginGuardService.logged">
+                <button mat-raised-button color="primary" (click)="next()">Continue Order</button>
+            </div>
+            
+            <div *ngIf="!loginGuardService.logged">
+                <div>
+                    Numner of Days:  <input type="number" [(ngModel)]="numOfDays" >
+                    <span class="not-selected" *ngIf="clicked && numOfDays<1">fill number</span>
+                </div>
+
+                <br>
+                <button mat-raised-button color="primary" (click)="calc()">Calculate Rental</button>
+                <span class="boldi">Total : {{price | number:'1.2-2' }}</span>
+            </div>
+
             <p class="not-selected" *ngIf="clicked && !chosen">Not selected</p>
         </div>
         
@@ -71,9 +88,11 @@
 
     </div>
 </div>
-<div class="history">
+<div class="history" *ngIf="!isEdit">
+    <span class="rowh-" *ngIf="history.length" >
+        History:
+    </span>
     <span class="rowh" *ngFor="let h of history " (click)="choose(h,true)" [ngClass]="chosen==h?'rows':''">
-        {{ h }}
-         
+        {{ h }}   
     </span>
 </div>

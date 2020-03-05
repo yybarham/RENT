@@ -33,3 +33,8 @@
    mat-datepicker-toggle {
     color: blue !important;
    }
+
+   .success{
+
+    font-size: 25px;color: blue;
+   }

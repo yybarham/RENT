@@ -34,8 +34,8 @@
         <br>
         <button mat-raised-button color="primary" (click)="placeOrder()">Place Order</button>
         <br>
-        <p *ngIf="isOK">Order Completed successfully</p>
-        <p *ngIf="isNOK">Action Failed</p>
+        <p *ngIf="isOK"  class="success">Order Completed successfully</p>
+        <p *ngIf="isNOK" class="failure">Action Failed</p>
         
     </div>
  

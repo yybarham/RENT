@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import { Car, CarType } from 'src/app/model/objects';
 import { Router } from '@angular/router';
+import { LoginGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-cars',
@@ -20,13 +21,15 @@ export class CarsComponent implements OnInit {
   clicked = false;
   // search
   all = '';
-  manufacturer = '';
+  number = '';
+  mnf = '';
   year = '';
+  model = '';
   gear = -1;
+
   edit = false;
   selectedCar: Car;
   history: string[] = [];
-
 
   comboGear = [
     { key: -1, value: 'CHOOSE' },
@@ -34,9 +37,10 @@ export class CarsComponent implements OnInit {
     { key: 2, value: 'MANU' },
   ];
 
-  constructor(private httpService: HttpService, private router: Router) {
+  price = 0;
+  numOfDays = 0;
 
-
+  constructor(private httpService: HttpService, private router: Router, private loginGuardService: LoginGuardService) {
     const his = localStorage.getItem('history');
     if (his) {
       this.history = JSON.parse(his);
@@ -54,8 +58,8 @@ export class CarsComponent implements OnInit {
       this.httpService.getCarType().subscribe(res2 => {
         this.carTypes = res2;
         this.joinData = this.innerJoin(this.carTypes, this.cars,
-          ({ Id, Manufacturer, Model, Year, GearType }, { Number, CarType, Mileage, Branch, Image, IsFree, selected }) =>
-            CarType === Id && { Number, CarType, Model, Mileage, Id, Manufacturer, GearType, Year, Branch, IsFree, Image, selected });
+          ({ Id, Manufacturer, Model, Year, GearType, DailyCost }, { Number, CarType, Mileage, Branch, Image, IsFree, selected }) =>
+            CarType === Id && { Number, CarType, Model, Mileage, Id, Manufacturer, GearType, Year, Branch, IsFree, Image, DailyCost, selected });
 
         if (!this.isEdit) {
           this.joinData = this.joinData.filter(c => c.IsFree);
@@ -124,6 +128,22 @@ export class CarsComponent implements OnInit {
     }
   }
 
+  clear() {
+    this.number = '';
+    this.mnf = '';
+    this.year = ''
+    this.gear = -1;
+    this.model = '';
+    this.all = '';
+  }
+
+  calc() {
+    this.clicked = true;
+    if (this.chosen && this.numOfDays>0) {
+      const DailyCost = this.joinData.filter(c => c.Number === this.chosen)[0].DailyCost;
+      this.price = DailyCost * this.numOfDays;
+    }
+  }
   public innerJoin = (xs, ys, sel) => xs.reduce((zs, x) => ys.reduce((zs, y) => zs.concat(sel(x, y) || []), zs), []);
 
 
