@@ -18,6 +18,17 @@ export class NewUserComponent implements OnInit, OnChanges {
   result;
   user: User = new User();
   form1;
+  optGender = [
+    { key: -1, value: 'choose' },
+    { key: 1, value: 'Male' },
+    { key: 2, value: 'Female' },
+  ];
+  optRole = [
+    { key: -1, value: 'choose' },
+    { key: 1, value: 'Admin' },
+    { key: 2, value: 'Employee' },
+    { key: 3, value: 'User' },
+  ];
 
   ddlList = [{ key: 1, value: 'Male' }, { key: 2, value: 'Female' }];
   unamePattern = "^[A-Za-z0-9]{5,15}$";
@@ -27,7 +38,7 @@ export class NewUserComponent implements OnInit, OnChanges {
       UserName: new FormControl('userN', [Validators.required, Validators.pattern(this.unamePattern)]),
       FullName: new FormControl('new user', [Validators.required, Validators.minLength(5)]),
       Email: new FormControl('', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]),
-      Gender: new FormControl('', [Validators.required, this.validateValue]),
+      Gender: new FormControl(-1, [Validators.required, this.validateValue]),
       Password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       Role: new FormControl(''),
     });
@@ -63,7 +74,7 @@ export class NewUserComponent implements OnInit, OnChanges {
     if (this.form1.valid) {
 
       this.httpService.saveUser(this.selectedUser).subscribe(res => {
-        this.result = res ;
+        this.result = res;
         if (res) {
           this.valueChange.emit();
         }
@@ -80,8 +91,8 @@ export class NewUserComponent implements OnInit, OnChanges {
     this.selectedUser.Role = 3;
     if (this.form1.valid) {
       this.httpService.saveUser(this.selectedUser).subscribe(res => {
-        this.result = res ;
-        if (res==1) {
+        this.result = res;
+        if (res == 1) {
           setTimeout(() => {
             this.valueChange.emit();
           }, 1500);
@@ -123,5 +134,16 @@ export class NewUserComponent implements OnInit, OnChanges {
     }
 
   }
-
+  onChange(value) {
+    this.form1.get('Gender').setValue(value);
+  }
+  onChangeRole(value) {
+    this.form1.get('Role').setValue(value);
+  }
+  get gender(){
+    return this.form1.get('Gender').value;
+  }
+  get role(){
+    return this.form1.get('Role').value;
+  }
 }

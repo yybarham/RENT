@@ -18,10 +18,10 @@
             <div *ngIf="!isRegister && selectedUser.Id>0" class="fields"><input formControlName="Id"    type="text" class="input1 w300" ></div>
             <div class="fields"><input formControlName="UserName"    type="text" class="input1 w300" [ngClass]="{'red': inValid('UserName')  }">(letters and numbers len 5-15)</div>
             <div class="fields"><input formControlName="FullName"    type="text" class="input1 w300" [ngClass]="{'red': inValid('FullName')  }" >(letters, min 5)</div>
-            <div class="fields"><input formControlName="Gender"     type="number" class="input1 w300" [ngClass]="{'red': inValid('Gender')  }">(1-male,2-female)</div>
+            <div class="fields"> <select [value]="gender" (change)="onChange($event.target.value)" class="opt" [ngClass]="{'red': inValid('Gender')  }"  ><option *ngFor='let c of optGender' value="{{c.key}}" >{{c.value}}</option></select> </div>
             <div class="fields"><input formControlName="Email"    type="text" class="input1 w300"[ngClass]="{'red': inValid('Email')  }" ></div>
             <div class="fields"><input formControlName="Password"    type="text" class="input1 w300" [ngClass]="{'red': inValid('Password')  }">(minlen-6)</div>
-            <div *ngIf="!isRegister" class="fields"><input formControlName="Role"    type="text" class="input1 w300"  >(1-admin,2-emp,3-user)</div>  
+            <div *ngIf="!isRegister" class="fields"><select [value]="role" (change)="onChangeRole($event.target.value)" class="opt" [ngClass]="{'red': inValid('Role')  }"  ><option *ngFor='let c of optRole' value="{{c.key}}" >{{c.value}}</option></select></div>  
                    
         </div>
     </div>
@@ -33,6 +33,6 @@
         <div style="color: red;" *ngIf="result==0">Unknown error</div>
         <div style="color: red;" *ngIf="result==-1">User Name already Exist</div>
     </div>
-    
+    <div>{{form1.value | json }}</div>
 </div>
  

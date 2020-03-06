@@ -1,0 +1,18 @@
+/* .opt {
+    height: 26px;
+    margin-left: 0px;
+    font-size: 12px;
+    width: 300px;
+} */
+select {
+    -webkit-appearance: none;
+  }
+ 
+  
+  select {
+    border-radius: 9px;
+    width: 300px;
+    height: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
