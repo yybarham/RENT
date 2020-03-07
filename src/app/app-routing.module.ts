@@ -8,7 +8,7 @@ import { NewOrderComponent } from './pages/orders/new-order.component';
 import { ReturnCarComponent } from './pages/return-car/return-car.component';
 import { ResigterComponent } from './pages/users/resigter.component';
 import { LoginComponent } from './pages/users/login.component';
-import { LoginGuardService, AdminGuardService, EmployeeGuardService } from './services/auth-guard.service';
+import { UserGuardService, AdminGuardService, EmployeeGuardService } from './services/auth-guard.service';
 import { NewCarComponent } from './pages/cars/new-car.component';
 import { InfoComponent } from './info/info.component';
 import { SearchCarComponent } from './pages/cars/search-car.component';
@@ -30,9 +30,9 @@ const routes: Routes = [
   //EMPLOYEE
   { path: 'return-car', component: ReturnCarComponent, canActivate: [EmployeeGuardService] },
   // USER
-  { path: 'start-order', component: StartOrderComponent, canActivate: [LoginGuardService] },
-  { path: 'new-order', component: NewOrderComponent, canActivate: [LoginGuardService] },
-  { path: 'my-order', component: MyOrderComponent, canActivate: [LoginGuardService] },  
+  { path: 'start-order', component: StartOrderComponent, canActivate: [UserGuardService] },
+  { path: 'new-order', component: NewOrderComponent, canActivate: [UserGuardService] },
+  { path: 'my-order', component: MyOrderComponent, canActivate: [UserGuardService] },  
   // GUEST
   { path: 'register', component: ResigterComponent },
   { path: 'login', component: LoginComponent },

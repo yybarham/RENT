@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import { Car, CarType } from 'src/app/model/objects';
 import { Router } from '@angular/router';
-import { LoginGuardService } from 'src/app/services/auth-guard.service';
+import { UserGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-cars',
@@ -40,7 +40,7 @@ export class CarsComponent implements OnInit {
   price = 0;
   numOfDays = 0;
 
-  constructor(private httpService: HttpService, private router: Router, private loginGuardService: LoginGuardService) {
+  constructor(private httpService: HttpService, private router: Router, private userGuardService: UserGuardService) {
     const his = localStorage.getItem('history');
     if (his) {
       this.history = JSON.parse(his);

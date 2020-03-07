@@ -3,10 +3,17 @@ import { ActivatedRouteSnapshot, RouterStateSnapshot, CanActivate, Router } from
 import { Observable } from 'rxjs';
 import { User } from '../model/objects';
 
+//////////////////////////////////////////////////////
+// THIS SERVICE HANDLE AUTHORIZATION
+// ITS INCLUDE 3 LEVELS OF AUTHORIZATION
+//-> ADMIN - CAN DO ANYTHING IN THIS SITE
+//-> EMPLOYEE - CAN RETURN CARS
+//-> USER - CAR ORDER A CAR AND VIEW ORDERS
+//////////////////////////////////////////////////////
 @Injectable({
   providedIn: 'root'
 })
-export class LoginGuardService implements CanActivate {
+export class UserGuardService implements CanActivate {
 
   isLoggedIn = false;
   loggedUser: string;

@@ -2,8 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from 'src/app/services/http.service';
 import { User } from 'src/app/model/objects';
-import { LoginGuardService, AdminGuardService, EmployeeGuardService } from 'src/app/services/auth-guard.service';
+import { UserGuardService, AdminGuardService, EmployeeGuardService } from 'src/app/services/auth-guard.service';
 import { Router, ActivatedRoute } from '@angular/router';
+
+/////////////////////////////////////////////////////
+// THIS COMPONENT ENABLE ALL USER TO MAKE LOGIN
+// LOGIN IS SUCCESS WHEN PASSWORD IS MACTHES TO THE PASSWORD ID THE DB 
+// ROLE ID INDICATE WHICH LEVEL OF USER
+// ROLEID = 1 - ADMIN
+// ROLEID = 2 - EMPLOYEE
+// ROLEID = 3 - SIMPLE USER
+//////////////////////////////////////////////////////////////////////
 
 @Component({
   selector: 'app-login',
@@ -15,11 +24,11 @@ export class LoginComponent implements OnInit {
   result: number = -1;
   public form1 = new FormGroup({
     UserName: new FormControl('admin', [Validators.required]),
-    Password: new FormControl('1', [Validators.required]),
+    Password: new FormControl('123456', [Validators.required]),
   });
 
   // tslint:disable-next-line:max-line-length
-  constructor(private httpService: HttpService, private adminGuardService: AdminGuardService, private loginGuardService: LoginGuardService, private employeeGuardService: EmployeeGuardService, private router: Router, private route: ActivatedRoute) {
+  constructor(private httpService: HttpService, private adminGuardService: AdminGuardService, private userGuardService: UserGuardService, private employeeGuardService: EmployeeGuardService, private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -32,8 +41,8 @@ export class LoginComponent implements OnInit {
     this.httpService.Login(user).subscribe(res => {
       this.result = res;
       if (res > 0) {
-        this.loginGuardService.loggedUser = user.UserName;
-        this.loginGuardService.isLoggedIn = true;
+        this.userGuardService.loggedUser = user.UserName;
+        this.userGuardService.isLoggedIn = true;
         if (res === 1) {
           this.adminGuardService.isAdmin = true;
           this.employeeGuardService.isEmployee = true;
@@ -44,9 +53,8 @@ export class LoginComponent implements OnInit {
         if (this.route.snapshot.params.url) {
           setTimeout(() => {
             this.router.navigate([this.route.snapshot.params.url]);
-          }, 13)
+          }, 1300)
         } else {
-
           this.router.navigate(['/']);
         }
       }

@@ -1,14 +1,10 @@
 <div>
-
-	<div class="logo" routerLink='/'>
-
-	</div>
-
+	<div class="logo" routerLink='/'> </div>
 	<div class="main-menu">
 		<div>
-			<span *ngIf="loginGuardService.logged">User: [{{loginGuardService.logged}}] :
+			<span *ngIf="userGuardService.logged">User: [{{userGuardService.logged}}] :
 				<a id="logout" (click)="logout()">logout</a></span>
-			<span *ngIf="!loginGuardService.logged">guest,
+			<span *ngIf="!userGuardService.logged">guest,
 				<a id="login" routerLink="/login">login</a></span>
 		</div>
 		<br>
@@ -17,9 +13,9 @@
 				<a>Admin</a>
 				<ul>
 					<li><a routerLink="/users">User List</a></li>
+					<li><a routerLink="/edit-order">Order List</a></li>
 					<li><a routerLink="/editcar">Car List</a></li>
 					<li><a routerLink="/cartype">CarType List</a></li>
-					<li><a routerLink="/edit-order">Order List</a></li>
 				</ul>
 			</li>
 			<li>
@@ -44,8 +40,7 @@
 				</ul>
 			</li>
 		</ul>
-
 	</div>
-
 </div>
+
 <router-outlet></router-outlet>

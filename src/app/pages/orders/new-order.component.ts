@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/services/http.service';
 import { Order, CarType } from 'src/app/model/objects';
 import { ThrowStmt } from '@angular/compiler';
-import { LoginGuardService } from 'src/app/services/auth-guard.service';
+import { UserGuardService } from 'src/app/services/auth-guard.service';
 
 @Component({
   selector: 'app-new-order',
@@ -21,7 +21,7 @@ export class NewOrderComponent implements OnInit {
   current_order = new Order();
   carTypes: CarType[] = [];
   selectedType: CarType;
-  constructor(private httpService: HttpService, private loginGuardService:LoginGuardService ) {
+  constructor(private httpService: HttpService, private userGuardService:UserGuardService ) {
     this, httpService.getCarType().subscribe(res => {
       this.carTypes = res;
       console.log(this.carTypes);
@@ -44,7 +44,7 @@ export class NewOrderComponent implements OnInit {
     if (this.price > 0) {
       if (confirm('Are you sure ?')) {
         this.current_order.ActualDate = null;
-        this.current_order.UserName = this.loginGuardService.logged;
+        this.current_order.UserName = this.userGuardService.logged;
         this.current_order.Number = this.chosen;
         console.log(100, this.current_order)
         this.current_order.IsNew = true;

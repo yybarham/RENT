@@ -19,7 +19,7 @@ import { ReturnCarComponent } from './pages/return-car/return-car.component';
 import { NewUserComponent } from './pages/users/new-user.component';
 import { ResigterComponent } from './pages/users/resigter.component';
 import { LoginComponent } from './pages/users/login.component';
-import { LoginGuardService } from './services/auth-guard.service';
+import { UserGuardService } from './services/auth-guard.service';
 import { NewCarComponent } from './pages/cars/new-car.component';
 import { Role, CarType, BrType, GType, FilterCol, ComboTxt, FilterAll, GenType } from './utils/pipes';
 import { InfoComponent } from './info/info.component';
@@ -60,7 +60,7 @@ import { NumberValidator } from './utils/validator';
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [HttpService, LoginGuardService, NumberValidator],
+  providers: [HttpService, UserGuardService, NumberValidator],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

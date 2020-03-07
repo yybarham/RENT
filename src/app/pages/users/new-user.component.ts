@@ -3,7 +3,11 @@ import { User } from 'src/app/model/objects';
 import { HttpService } from 'src/app/services/http.service';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 
-
+////////////////////////////////////////////////////
+// THIS COMPONENT IS HELP ADMIN TO EDIT AND CREATE USERS
+// AND ALSO HELP GUEST TO RGISTER AS A NEW USER
+// 
+////////////////////////////////////////////////////
 @Component({
   selector: 'app-new-user',
   templateUrl: './new-user.component.html',
@@ -30,7 +34,6 @@ export class NewUserComponent implements OnInit, OnChanges {
     { key: 3, value: 'User' },
   ];
 
-  ddlList = [{ key: 1, value: 'Male' }, { key: 2, value: 'Female' }];
   unamePattern = "^[A-Za-z0-9]{5,15}$";
   initForm() {
     this.form1 = new FormGroup({

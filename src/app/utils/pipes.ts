@@ -1,5 +1,13 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
+//////////////////////////////////////////////////////////
+// PIPES TO DISPLAY THE VALUE OF KEY IN ANY ROW OF GRID 
+// ROLS                                                 
+// CAR TYPE                                         
+// BRANCH
+// GEAR TYPE
+// GENDER TYPE
+//////////////////////////////////////////////////////////
 @Pipe({
   name: 'Role'
 })
@@ -30,7 +38,6 @@ export class CarType implements PipeTransform {
     }
   }
 }
-
 @Pipe({
   name: 'BrType'
 })
@@ -59,7 +66,6 @@ export class GType implements PipeTransform {
     }
   }
 }
-
 @Pipe({
   name: 'GenType'
 })
@@ -73,7 +79,12 @@ export class GenType implements PipeTransform {
     }
   }
 }
-
+//////////////////////////////////////////////////////////
+// PIPES TO FILTER DATA FROM ROW OF GRID 
+// FILTER BY ONE COLOMN OF GRID
+// FILTER BY COMBOBOX
+// FILTER ALL COLUMNS 
+//////////////////////////////////////////////////////////
 @Pipe({
   name: 'filterCol'
 })
@@ -97,7 +108,6 @@ export class FilterCol implements PipeTransform {
     }
   }
 }
-
 @Pipe({
   name: 'ComboTxt'
 })
@@ -120,8 +130,6 @@ export class ComboTxt implements PipeTransform {
     }
   }
 }
-
-
 @Pipe({
   name: 'filterAll'
 })

@@ -1,6 +1,8 @@
 import { Data } from '@angular/router';
 
 export class User {
+
+  // CONSTRUCTOR TO FILL FROM FORM
   public constructor(init?: Partial<User>) {
     Object.assign(this, init);
 }

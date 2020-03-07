@@ -4,6 +4,15 @@ import { Observable } from 'rxjs';
 import { baseUrl } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
+
+//////////////////////////////////////////////////////
+// ONE SERVICE TO GET AND SET ALL DATA FROM SERVER
+// THIS INCLUDE USES, CARS, CARTYPES, ORDERS
+// THIS SERVICE USE GET AND POST
+// THIS SERVICE INCLUDE GET LIST , DELETE ROW , UPDATE ROW 
+// THIS SERVICE ALSO SUPPORT LOGIN
+// ALL SERVICES ARE OBSERVEABLE
+//////////////////////////////////////////////////////
 @Injectable({
   providedIn: 'root'
 })
@@ -26,6 +35,7 @@ export class HttpService {
     const urlUsers = baseUrl + 'GetCarTypes';
     return this.http.get<CarType[]>(urlUsers).pipe();
   }
+
   getOrders(): Observable<Order[]> {
     const urlUsers = baseUrl + 'GetOrders';
     return this.http.get<Order[]>(urlUsers).pipe();
@@ -60,6 +70,7 @@ export class HttpService {
     const urlUsers = baseUrl + 'Login';
     return this.http.post<number>(urlUsers, user, { headers: { 'Content-Type': 'application/json' } }).pipe();
   }
+  
   saveCar(user: Car): Observable<boolean> {
     const urlUsers = baseUrl + 'SaveCar';
     return this.http.post<boolean>(urlUsers, user, { headers: { 'Content-Type': 'application/json' } }).pipe();

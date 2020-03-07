@@ -3,8 +3,8 @@
     <div class="main">
 
         <div *ngIf="!isEdit" class="header">
-            <span *ngIf="!loginGuardService.logged" >Search & Calc</span>
-            <span *ngIf="loginGuardService.logged">Search & Order</span>
+            <span *ngIf="!userGuardService.logged" >Search & Calc</span>
+            <span *ngIf="userGuardService.logged">Search & Order</span>
         </div>
         <div *ngIf="isEdit" class="header">Car List</div>
         <div class="row">
@@ -58,11 +58,11 @@
                 Selected Car: <span>{{chosen}}</span>
             </div>
             <br>
-            <div *ngIf="loginGuardService.logged">
+            <div *ngIf="userGuardService.logged">
                 <button mat-raised-button color="primary" (click)="next()">Continue Order</button>
             </div>
             
-            <div *ngIf="!loginGuardService.logged">
+            <div *ngIf="!userGuardService.logged">
                 <div>
                     Numner of Days:  <input type="number" [(ngModel)]="numOfDays" >
                     <span class="not-selected" *ngIf="clicked && numOfDays<1">fill number</span>

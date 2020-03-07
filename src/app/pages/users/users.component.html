@@ -32,7 +32,7 @@
             <button mat-raised-button color="primary" (click)="newUser()">New User</button>
         </div>
         <div>
-            <app-new-user [selectedUser]="selectedUser" (valueChange)='displayCounter()' *ngIf="edit"></app-new-user>
+            <app-new-user [selectedUser]="selectedUser" (valueChange)='refresh()' *ngIf="edit"></app-new-user>
         </div>
         
     </div>

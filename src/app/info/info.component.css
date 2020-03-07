@@ -1,8 +1,14 @@
-.info{
-    padding-top: 40px;
-    text-align: center;
-    height: 500px;
-    color: cadetblue;
-    font-size: 30px;
-    margin: 0 auto;
-  }
+.info {
+  padding-top: 40px;
+  text-align: center;
+  font-size: 30px;
+  margin: 0 auto;
+  color: brown;
+}
+
+.info2 {
+  text-align: left;
+  color: cadetblue;
+  font-size: 30px;
+  margin: 0 auto;
+}

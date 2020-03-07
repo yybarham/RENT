@@ -6,6 +6,14 @@ import { baseUrl } from 'src/environments/environment';
 import { User } from 'src/app/model/objects';
 import { HttpService } from 'src/app/services/http.service';
 
+//////////////////////////////////////////////////////////////////////
+// THIS COMPONENT DISPLAY LIST OF ALL USERS - FOR ADMINISTRARTOR ONLY
+// HE CAN DELETE- MODIFY - ADD NEW ALL START HERE
+// INNER COMPONENT <app-new-user> IS USED TO EDIT AND CREATE NEW USER 
+// DELETE IS DONE FROM HERE
+// AFTER ANY CHANGES THE LIST IS REFRESHED
+//////////////////////////////////////////////////////////////////////
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -39,7 +47,7 @@ export class UsersComponent {
     this.selectedUser.IsNew = true;
     this.edit = true;
   }
-  displayCounter() {
+  refresh() {
     this.getUsers();
     
     setTimeout(()=>{
