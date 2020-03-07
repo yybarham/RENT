@@ -14,13 +14,30 @@ import { OnChanges } from '@angular/core';
 export class NewCarComponent implements OnInit, OnChanges {
   @Output() eventToParent = new EventEmitter();
   @Input() selectedCar: Car = new Car();
-  form1;
+  form1 = new FormGroup({
+    Number: new FormControl('', [Validators.required]),
+    CarType: new FormControl(-1, [Validators.required]),
+    Isvalid: new FormControl('', [Validators.required]),
+    IsFree: new FormControl('', [Validators.required]),
+    Mileage: new FormControl('', [Validators.required]),
+    Branch: new FormControl(-1, [Validators.required]),
+    Image: new FormControl(''),
+  });
   base64textString = '';
-  
+  optBranch = [
+    { key: -1, value: 'choose' },
+    { key: 1, value: 'Tel Aviv' },
+    { key: 2, value: 'Jerusalem' },
+    { key: 3, value: 'Haifa' },
+    { key: 4, value: 'Holon' },
+  ];
 
-
+  optType: any[] = [];
   constructor(private httpService: HttpService) {
-    this.initForm();
+    this.httpService.getCarType().subscribe(res => {
+      this.optType = res.map(r => ({ key: r.Id, value: r.Model }));
+      this.optType.unshift({ key: -1, value: 'choose' });
+    });
   }
   ngOnInit() {
 
@@ -28,16 +45,15 @@ export class NewCarComponent implements OnInit, OnChanges {
   initForm() {
     this.form1 = new FormGroup({
       Number: new FormControl('', [Validators.required]),
-      CarType: new FormControl('', [Validators.required]),
+      CarType: new FormControl(-1, [Validators.required]),
       Isvalid: new FormControl('', [Validators.required]),
       IsFree: new FormControl('', [Validators.required]),
       Mileage: new FormControl('', [Validators.required]),
-      Branch: new FormControl('', [Validators.required]),
+      Branch: new FormControl(-1, [Validators.required]),
       Image: new FormControl(''),
     });
   }
   ngOnChanges() {
-
     if (this.selectedCar.Number) {
       Object.keys(this.selectedCar).forEach(key => {
         if (this.form1.controls[key]) {
@@ -88,10 +104,25 @@ export class NewCarComponent implements OnInit, OnChanges {
     return this.form1.get(name).invalid && this.form1.get(name).touched;
   }
 
-  touchForm(){
+  touchForm() {
     Object.keys(this.form1.controls).forEach(key => {
       this.form1.get(key).markAsTouched();
     });
   }
+
+  onChange(value) {
+    this.form1.get('Branch').setValue(value);
+  }
+  get branch() {
+    return this.form1.get('Branch').value;
+  }
+
+  onChangeType(value) {
+    this.form1.get('CarType').setValue(value);
+  }
+  get cartype() {
+    return this.form1.get('CarType').value;
+  }
+
 
 }

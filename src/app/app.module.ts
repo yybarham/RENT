@@ -28,6 +28,7 @@ import { EditCarComponent } from './pages/cars/edit-car.component';
 import { EditOrderComponent } from './pages/orders/edit-order.component';
 import { MyOrderComponent } from './pages/orders/my-order.component';
 import { StartOrderComponent } from './pages/orders/start-order.component';
+import { NumberValidator } from './utils/validator';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,7 @@ import { StartOrderComponent } from './pages/orders/start-order.component';
     MatDatepickerModule,
     MatNativeDateModule
   ],
-  providers: [HttpService, LoginGuardService],
+  providers: [HttpService, LoginGuardService, NumberValidator],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -17,8 +17,12 @@
         </div>
         <div style="width: 75%;" [formGroup]="form1" >
             <div class="fields"><input formControlName="Number" required type="text" class="input1 w300" [ngClass]="{'red': inValid('Number')  }"></div>
-            <div class="fields"><input formControlName="Branch" required type="text" class="input1 w300" [ngClass]="{'red': inValid('Branch')  }"></div>
-            <div class="fields"><input formControlName="CarType" required type="text" class="input1 w300" [ngClass]="{'red': inValid('CarType')  }"></div>
+            <div class="fields"> 
+                <select [value]="branch" (change)="onChange($event.target.value)" class="opt" [ngClass]="{'red': inValid('Branch')  }"  ><option *ngFor='let c of optBranch' value="{{c.key}}" >{{c.value}}</option></select>  
+            </div>
+            <div class="fields">
+                <select [value]="cartype" (change)="onChangeType($event.target.value)" class="opt"  [ngClass]="{'red': inValid('CarType')  }"  ><option *ngFor='let c of optType' value="{{c.key}}" >{{c.value}}</option></select>  
+            </div>
             <div class="fields"><input formControlName="IsFree" required type="text" class="input1 w300" [ngClass]="{'red': inValid('IsFree')  }"></div>
             <div class="fields"><input formControlName="Isvalid" required type="text" class="input1 w300" [ngClass]="{'red': inValid('Isvalid')  }"></div>
             <div class="fields"><input formControlName="Mileage" required type="text" class="input1 w300" [ngClass]="{'red': inValid('Mileage')  }"></div>
@@ -29,7 +33,8 @@
         </div>
     </div>
     <div>
-        <button mat-raised-button color="primary" style="background-color: cyan;" (click)="saveCar()">Save Car</button>
+        <button mat-raised-button color="primary" style="background-color: orangered;" (click)="saveCar()">Save Car</button>
+        <button mat-raised-button color="primary" style="background-color: grey;" (click)="saveCar()">Cancel</button>
     </div>
     <br />
     <!-- <div>[ {{form1.value | json}} ]</div> -->

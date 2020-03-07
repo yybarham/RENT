@@ -1,0 +1,15 @@
+
+
+ 
+select {
+    -webkit-appearance: none;
+  }
+ 
+  
+  select {
+    border-radius: 9px;
+    width: 300px;
+    height: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
+  }

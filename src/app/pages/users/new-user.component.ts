@@ -132,8 +132,8 @@ export class NewUserComponent implements OnInit, OnChanges {
         };
       }
     }
-
   }
+  
   onChange(value) {
     this.form1.get('Gender').setValue(value);
   }

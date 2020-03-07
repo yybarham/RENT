@@ -98,7 +98,6 @@ export class CarsComponent implements OnInit {
 
   newCar() {
     this.selectedCar = new Car();
-    this.selectedCar.Number = '000000000';
     this.selectedCar.IsNew = true;
     this.edit = true;
   }
