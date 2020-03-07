@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { HttpService } from 'src/app/services/http.service';
 import { Car } from 'src/app/model/objects';
 import { Input } from '@angular/core';
@@ -16,11 +16,11 @@ export class NewCarComponent implements OnInit, OnChanges {
   @Input() selectedCar: Car = new Car();
   form1 = new FormGroup({
     Number: new FormControl('', [Validators.required]),
-    CarType: new FormControl(-1, [Validators.required]),
-    Isvalid: new FormControl('', [Validators.required]),
-    IsFree: new FormControl('', [Validators.required]),
+    CarType: new FormControl(-1, [Validators.required, this.validateCarType]),
+    Isvalid: new FormControl('', [Validators.required, this.validateBool]),
+    IsFree: new FormControl('', [Validators.required, this.validateBool]),
     Mileage: new FormControl('', [Validators.required]),
-    Branch: new FormControl(-1, [Validators.required]),
+    Branch: new FormControl(-1, [Validators.required, this.validateBranch]),
     Image: new FormControl(''),
   });
   base64textString = '';
@@ -33,26 +33,31 @@ export class NewCarComponent implements OnInit, OnChanges {
   ];
 
   optType: any[] = [];
+  isOK;
+  isNOK;
   constructor(private httpService: HttpService) {
     this.httpService.getCarType().subscribe(res => {
       this.optType = res.map(r => ({ key: r.Id, value: r.Model }));
       this.optType.unshift({ key: -1, value: 'choose' });
     });
   }
+
   ngOnInit() {
 
   }
+
   initForm() {
     this.form1 = new FormGroup({
       Number: new FormControl('', [Validators.required]),
-      CarType: new FormControl(-1, [Validators.required]),
-      Isvalid: new FormControl('', [Validators.required]),
-      IsFree: new FormControl('', [Validators.required]),
+      CarType: new FormControl(-1, [Validators.required, this.validateCarType]),
+      Isvalid: new FormControl('', [Validators.required, this.validateBool]),
+      IsFree: new FormControl('', [Validators.required, this.validateBool]),
       Mileage: new FormControl('', [Validators.required]),
-      Branch: new FormControl(-1, [Validators.required]),
+      Branch: new FormControl(-1, [Validators.required, this.validateBranch]),
       Image: new FormControl(''),
     });
   }
+
   ngOnChanges() {
     if (this.selectedCar.Number) {
       Object.keys(this.selectedCar).forEach(key => {
@@ -60,6 +65,8 @@ export class NewCarComponent implements OnInit, OnChanges {
           this.form1.controls[key].setValue(this.selectedCar[key]);
         }
       });
+      this.form1.controls['Isvalid'].setValue(this.selectedCar.Isvalid ? 1 : 0);
+      this.form1.controls['IsFree'].setValue(this.selectedCar.IsFree ? 1 : 0);
     } else {
       this.initForm();
     }
@@ -77,7 +84,6 @@ export class NewCarComponent implements OnInit, OnChanges {
   _handleReaderLoaded(readerEvt) {
     const binaryString = readerEvt.target.result;
     this.base64textString = btoa(binaryString);
-    console.log(100, this.base64textString);
     this.form1.get('Image').setValue(this.base64textString);
 
   }
@@ -93,15 +99,21 @@ export class NewCarComponent implements OnInit, OnChanges {
       alert('not valid');
       return;
     }
-    if (confirm("confirm")) {
+    if (confirm("Are you sure?")) {
       this.httpService.saveCar(this.selectedCar).subscribe(res => {
-        alert(res);
-        this.eventToParent.emit();
+        this.isOK = res;
+        this.isNOK = !res;
+        setTimeout(() => {
+          this.eventToParent.emit();
+        }, 2000);
       });
     }
   }
   inValid(name) {
     return this.form1.get(name).invalid && this.form1.get(name).touched;
+  }
+  cancel() {
+    this.eventToParent.emit();
   }
 
   touchForm() {
@@ -124,5 +136,65 @@ export class NewCarComponent implements OnInit, OnChanges {
     return this.form1.get('CarType').value;
   }
 
+  validateBranch(control: AbstractControl) {
+    const val = control.value;
+    if (val === null || val === undefined || val === '') {
+      return {
+        validateValue: {
+          valid: false
+        }
+      };
+    } else {
+      if (+val >= 1 && +val <= 4) {
+        return null;
+      } else {
+        return {
+          validateValue: {
+            valid: false
+          }
+        };
+      }
+    }
+  }
+  validateCarType(control: AbstractControl) {
+    const val = control.value;
+    if (val === null || val === undefined || val === '') {
+      return {
+        validateValue: {
+          valid: false
+        }
+      };
+    } else {
+      if (+val >= 1 && +val <= 5) {
+        return null;
+      } else {
+        return {
+          validateValue: {
+            valid: false
+          }
+        };
+      }
+    }
+  }
+  validateBool(control: AbstractControl) {
+    const val = control.value;
+    if (val === null || val === undefined || val === '') {
+      return {
+        validateValue: {
+          valid: false
+        }
+      };
+    } else {
+      if (+val >= 0 && +val <= 1) {
+        return null;
+      } else {
+        return {
+          validateValue: {
+            valid: false
+          }
+        };
+      }
+    }
+  }
 
 }

@@ -23,10 +23,10 @@
             <div class="fields">
                 <select [value]="cartype" (change)="onChangeType($event.target.value)" class="opt"  [ngClass]="{'red': inValid('CarType')  }"  ><option *ngFor='let c of optType' value="{{c.key}}" >{{c.value}}</option></select>  
             </div>
-            <div class="fields"><input formControlName="IsFree" required type="text" class="input1 w300" [ngClass]="{'red': inValid('IsFree')  }"></div>
-            <div class="fields"><input formControlName="Isvalid" required type="text" class="input1 w300" [ngClass]="{'red': inValid('Isvalid')  }"></div>
+            <div class="fields"><input formControlName="IsFree" required type="text" class="input1 w300" [ngClass]="{'red': inValid('IsFree')  }">(0-busy,1-free)</div>
+            <div class="fields"><input formControlName="Isvalid" required type="text" class="input1 w300" [ngClass]="{'red': inValid('Isvalid')  }">(0-not,1-valid)</div>
             <div class="fields"><input formControlName="Mileage" required type="text" class="input1 w300" [ngClass]="{'red': inValid('Mileage')  }"></div>
-            <div class="fields"><input (change)="handleFileSelect($event)"   type="file" class="input1 w300">
+            <div class="fields"><input (change)="handleFileSelect($event)"   type="file" class="input1 w300" placeholder="choose file">
             
             </div>
              
@@ -34,8 +34,10 @@
     </div>
     <div>
         <button mat-raised-button color="primary" style="background-color: orangered;" (click)="saveCar()">Save Car</button>
-        <button mat-raised-button color="primary" style="background-color: grey;" (click)="saveCar()">Cancel</button>
+        <button mat-raised-button color="primary" style="background-color: grey;" (click)="cancel()">Cancel</button>
     </div>
+    <p *ngIf="isOK"  class="success">Order Completed successfully</p>
+    <p *ngIf="isNOK" class="failure">Action Failed</p>
     <br />
     <!-- <div>[ {{form1.value | json}} ]</div> -->
     <br />

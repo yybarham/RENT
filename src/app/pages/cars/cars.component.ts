@@ -58,11 +58,11 @@ export class CarsComponent implements OnInit {
       this.httpService.getCarType().subscribe(res2 => {
         this.carTypes = res2;
         this.joinData = this.innerJoin(this.carTypes, this.cars,
-          ({ Id, Manufacturer, Model, Year, GearType, DailyCost }, { Number, CarType, Mileage, Branch, Image, IsFree, selected }) =>
-            CarType === Id && { Number, CarType, Model, Mileage, Id, Manufacturer, GearType, Year, Branch, IsFree, Image, DailyCost, selected });
+          ({ Id, Manufacturer, Model, Year, GearType, DailyCost }, { Number, CarType, Mileage, Branch, Image, IsFree,Isvalid, selected }) =>
+            CarType === Id && { Number, CarType, Model, Mileage, Id, Manufacturer, GearType, Year, Branch, IsFree,Isvalid, Image, DailyCost, selected });
 
         if (!this.isEdit) {
-          this.joinData = this.joinData.filter(c => c.IsFree);
+          this.joinData = this.joinData.filter(c => c.IsFree && c.Isvalid);
         }
       });
     });

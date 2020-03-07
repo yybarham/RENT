@@ -8,12 +8,13 @@ import { HttpService } from 'src/app/services/http.service';
   templateUrl: './edit-order.component.html',
   styleUrls: ['./edit-order.component.css']
 })
-export class EditOrderComponent implements OnInit  {
+export class EditOrderComponent implements OnInit {
 
   form1;
   selectedOrder: Order;
-  data:string = '';
-
+  data: string = '';
+  isNOK;
+  isOK;
   constructor(private httpService: HttpService) {
     this.initForm();
   }
@@ -42,20 +43,20 @@ export class EditOrderComponent implements OnInit  {
       }
     });
   }
-  saveOrder(){
+  saveOrder() {
     this.selectedOrder = new Order(this.form1.value);
     this.selectedOrder.IsNew = false;
     this.httpService.saveOrder(this.selectedOrder).subscribe(res => {
-      alert(res)
-      if(res){
+      if (res) {
         this.selectedOrder = null;
         this.data = 'saved';
       }
-      // this.isOK = res;
-      // this.isNOK = !res;
+      this.isOK = res;
+      this.isNOK = !res;
     });
   }
-  cancel(){
-    
+  cancel() {
+    this.selectedOrder = null;
+    this.data = 'not saved';
   }
 }
