@@ -3,6 +3,13 @@ import { HttpService } from 'src/app/services/http.service';
 import { Order, CarType } from 'src/app/model/objects';
 import { ThrowStmt } from '@angular/compiler';
 import { UserGuardService } from 'src/app/services/auth-guard.service';
+//////////////////////////////////////////////////
+// THIS COMPONENT ALLOW USER PLACE CAR ORDER
+// HE CAME TO THIS FORM AFTER CHOOSING A CAR FROM CAR LIST
+// THE CAR IS SAVE ON LOCALSTORAGE ON CAR COMPONENT
+// THEN CHOOSE THE DATE 
+// THAN PLACE THE ORDER AFTER CONFIGTM
+//////////////////////////////////////////////////////////
 
 @Component({
   selector: 'app-new-order',

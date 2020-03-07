@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+/////////////////////////////////////////////////
+// THIS IS COMPONENT FOR ADMIN TO START EDIT CAR
+///////////////////////////////////////////////////
+
 @Component({
   selector: 'app-edit-car',
   templateUrl: './edit-car.component.html',

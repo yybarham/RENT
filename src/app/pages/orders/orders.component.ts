@@ -1,6 +1,12 @@
 import { Component, OnInit, Output, EventEmitter, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Order } from 'src/app/model/objects';
 import { HttpService } from 'src/app/services/http.service';
+///////////////////////////////////////////
+// THIS COMPONENT DISPLAY LIST OF ALL ORDERS
+// ITS INNER COMPONENT FOR ADMIN TO SEARCH AND EDIT/DELETE/ ORDER
+// AND ALSO FOR EMPLOYYE TO RETURN CAR FROM ORDER
+//////////////////////////////////////////////////////
+
 
 @Component({
   selector: 'app-orders',

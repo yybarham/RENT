@@ -3,6 +3,13 @@ import { HttpService } from 'src/app/services/http.service';
 import { Car, CarType } from 'src/app/model/objects';
 import { Router } from '@angular/router';
 import { UserGuardService } from 'src/app/services/auth-guard.service';
+/////////////////////////////////////////////////////////
+// THIS COMPONENT SHOW LIST OF ALL CAR
+// ITS  INNER COMPONENT OF 3 PAGE
+// CAR LIST FOR GUEST TO SEARCH A CAR
+// CAR LIST FOR ADMIN TO EDIT/DELETE/CREATE CAR
+// CAR LIST FOR USER TO START NEW ORDER
+////////////////////////////////////////////////////////
 
 @Component({
   selector: 'app-cars',

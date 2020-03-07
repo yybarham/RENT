@@ -2,7 +2,7 @@
 
     <div class="main">
 
-        <app-orders (valueChange)='displayCounter($event)' [action]="'return-car'" [data]="data"></app-orders>
+        <app-orders (valueChange)='evetFromChild($event)' [action]="'return-car'" [data]="data"></app-orders>
 
         <br>
         <div class="boldi">Car To Return: {{selectedOrder?.Number}}</div>
@@ -10,10 +10,10 @@
         <div class="boldi">Daily Cost: {{dailyCost}}</div>
         <br>
 
-        <div>
+        <div *ngIf="selectedOrder">
             <mat-form-field>
                 <mat-label>Choose Return date</mat-label>
-                <input matInput [matDatepicker]="picker" (dateChange)="onDateChange($event)">
+                <input  [min]="minDate1" matInput [matDatepicker]="picker" (dateChange)="onDateChange($event)">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -27,11 +27,11 @@
         <div>
             <button mat-raised-button color="primary" (click)="returnCar()">Return the car </button>
             &nbsp;
-            <span *ngIf="msgid==3"> Car Return OK</span>
+            <span *ngIf="msgid==3" class="boldi"> Car Return OK</span>
             <span class="red1" *ngIf="msgid==4"> Car Return Failed</span>
         </div>
         <br>
-
+       == {{minDate1}}
     </div>
 
 </div>

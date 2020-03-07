@@ -5,7 +5,12 @@ import { Car } from 'src/app/model/objects';
 import { Input } from '@angular/core';
 import { Output } from '@angular/core';
 import { OnChanges } from '@angular/core';
-
+//////////////////////////////////////////////////
+// THIS COMPONENT IS USED TO CREATE NEW CAR
+// ADMIN NEED TO FILL ALL FIELD TO CREATE CAR 
+// IMAGE CAR BE ADDED - NOT MUST
+// ALL FIELD HAVE VALIDATORS
+///////////////////////////////////////////////
 @Component({
   selector: 'app-new-car',
   templateUrl: './new-car.component.html',

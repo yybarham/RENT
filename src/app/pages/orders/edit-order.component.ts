@@ -3,6 +3,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Order } from 'src/app/model/objects';
 import { HttpService } from 'src/app/services/http.service';
 
+//////////////////////////////////////////////////////////////
+// THIS COMPONENT ALLOW ADMIN TO EDIT AND SAVE ORDER
+//////////////////////////////////////////////////////////////
+
 @Component({
   selector: 'app-edit-order',
   templateUrl: './edit-order.component.html',
